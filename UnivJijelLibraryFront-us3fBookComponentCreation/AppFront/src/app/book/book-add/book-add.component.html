@@ -1,0 +1,203 @@
+
+    <!-- <div class="addUpdateBookContainer container col-md-6 col-xl-4"> -->
+    <div class="registration-form m-3 p-4">
+     <!-- <form #addBookForm="ngForm"  > -->
+     <form [formGroup]="registrationForm"  >
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter ISBN</mat-label>
+            <input formControlName="bk_isbn" matInput placeholder="bk_isbn">
+            <!-- <input matInput #isbnInput maxlength="10" required  [(ngModel)]="book.bk_isbn"  name="isbn" >
+            <mat-hint align="end">{{isbnInput.value.length}}/10</mat-hint> -->
+          </mat-form-field>
+
+        </div>
+        
+        <div class="col-md-6">
+          <mat-form-field hintLabel="Max 100 characters" appearance="fill">
+            <mat-label>Enter Title</mat-label>
+            <input formControlName="doc_title" matInput placeholder="doc_title">
+            <!-- <input matInput #titleInput maxlength="100" required [(ngModel)]="book.doc_title" name="title">
+            <mat-hint align="end">{{titleInput.value.length}}/10</mat-hint> -->
+          </mat-form-field>
+
+        </div>
+        
+        <div class="col-md-6">
+          <mat-form-field  appearance="fill">
+            <mat-label>Enter book edition </mat-label>
+            <input formControlName="bk_edition" matInput placeholder="bk_edition">
+            <!-- <input matInput #editionInput  required [(ngModel)]="book.bk_edition" name="edition">
+            <mat-hint align="end">{{editionInput.value.length}}/10</mat-hint> -->
+          </mat-form-field>
+
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter complementary title </mat-label>
+            <input formControlName="doc_complementaryTitle" matInput placeholder="doc_complementaryTitle">
+            <!-- <input matInput #complementaryTitleInput maxlength="10" required [(ngModel)]="book.doc_complementaryTitle" name="complementaryTitle" >
+            <mat-hint align="end">{{complementaryTitleInput.value.length}}/10</mat-hint> -->
+          </mat-form-field>
+
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter parallel title </mat-label>
+            <input formControlName="doc_parallelTitle" matInput placeholder="doc_parallelTitle">
+            <!-- <input matInput #complementaryTitleInput maxlength="10" required [(ngModel)]="book.doc_complementaryTitle" name="complementaryTitle" >
+            <mat-hint align="end">{{complementaryTitleInput.value.length}}/10</mat-hint> -->
+          </mat-form-field>
+
+        </div>
+  
+        <div class="col-md-6">
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter set title </mat-label>
+            <input formControlName="doc_setTitle" matInput placeholder="doc_setTitle">
+            <!-- <input matInput #setTitleInput maxlength="10" required  [(ngModel)]="book.doc_setTitle"  name="setTitle" >
+            <mat-hint align="end">{{setTitleInput.value.length}}/10</mat-hint> -->
+          </mat-form-field>
+
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter part number </mat-label>
+            <input formControlName="doc_partNumber" matInput placeholder="doc_partNumber">
+            <!-- <input matInput #partNumberInput maxlength="10" required  [(ngModel)]="book.doc_partNumber"  name="partNumber" >
+            <mat-hint align="end">{{partNumberInput.value.length}}/10</mat-hint> -->
+           </mat-form-field>
+
+        </div>
+         
+        <div class="col-md-6">
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter year </mat-label>
+            <input formControlName="doc_year" matInput placeholder="doc_year">
+            <!-- <input matInput #yearInput maxlength="10" required  [(ngModel)]="book.doc_year"  name="year" >
+            <mat-hint align="end">{{yearInput.value.length}}/10</mat-hint> -->
+           </mat-form-field>
+
+        </div>
+         
+        <div class="col-md-6">
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter number of copies </mat-label>
+            <input formControlName="doc_nbr_copies" matInput placeholder="doc_nbr_copies">
+            <!-- <input matInput #nbr_copiesInput maxlength="10" required  [(ngModel)]="book.doc_nbr_copies"  name="nbr_copies" >
+            <mat-hint align="end">{{nbr_copiesInput.value.length}}/10</mat-hint> -->
+           </mat-form-field>
+
+        </div>
+         
+        <div class="col-md-6"> 
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter keywords</mat-label>
+            <input formControlName="doc_keywords" matInput placeholder="doc_keywords">
+            <!-- <input matInput #keywordsInput maxlength="10" required  [(ngModel)]="book.doc_keywords"  name="keywords" >
+            <mat-hint align="end">{{keywordsInput.value.length}}/10</mat-hint> -->
+           </mat-form-field>
+
+        </div>
+
+        <div class="col-md-6"> 
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter illustration </mat-label>
+            <input formControlName="doc_illustration" matInput placeholder="doc_illustration">
+            <!-- <input matInput #illustrationInput maxlength="10" required  [(ngModel)]="book.doc_illustration"  name="illustration" >
+            <mat-hint align="end">{{illustrationInput.value.length}}/10</mat-hint> -->
+           </mat-form-field>
+
+        </div>
+        <div class="col-md-6"> 
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter number of pages</mat-label>
+            <input formControlName="doc_nbr_pages" matInput placeholder="doc_nbr_pages">
+            <!-- <input matInput #nbr_pagesInput maxlength="10" required  [(ngModel)]="book.doc_nbr_pages"  name="nbr_pages" >
+            <mat-hint align="end">{{nbr_pagesInput.value.length}}/10</mat-hint> -->
+           </mat-form-field>
+
+        </div>
+        
+        <div class="col-md-6"> 
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter material </mat-label>
+            <input formControlName="doc_material" matInput placeholder="doc_material">
+            <!-- <input matInput #materialInput maxlength="10" required  [(ngModel)]="book.doc_material"  name="material" >
+            <mat-hint align="end">{{materialInput.value.length}}/10</mat-hint> -->
+           </mat-form-field>
+
+        </div>
+        <div class="col-md-6"> 
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter length </mat-label>
+            <input formControlName="doc_length" matInput placeholder="doc_length">
+            <!-- <input matInput #lengthInput maxlength="10" required  [(ngModel)]="book.doc_length"  name="length" >
+            <mat-hint align="end">{{lengthInput.value.length}}/10</mat-hint> -->
+           </mat-form-field>
+
+        </div>
+        <div class="col-md-6"> 
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter abstract </mat-label>
+            <input formControlName="doc_abstract" matInput placeholder="doc_abstract">
+            <!-- <input matInput #lengthInput maxlength="10" required  [(ngModel)]="book.doc_length"  name="length" >
+            <mat-hint align="end">{{lengthInput.value.length}}/10</mat-hint> -->
+           </mat-form-field>
+
+        </div>
+        
+        <div class="col-md-6">
+          <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+            <mat-label>Enter notes </mat-label>
+            <input formControlName="doc_notes" matInput placeholder="doc_notes">
+            <!-- <input matInput #notesInput maxlength="10" required  [(ngModel)]="book.doc_notes"  name="notes" >
+            <mat-hint align="end">{{notesInput.value.length}}/10</mat-hint> -->
+           </mat-form-field>
+
+        </div>
+         
+         
+         
+      </div>
+      
+  
+  
+  
+       <!-- <button mat-raised-button class="mat-primary" type="submit" (click)="saveBook(addBookForm)" [disabled]="!addBookForm.valid">Save</button> 
+       -->
+       <button *ngIf="isUpdateActive" (click)="update()" mat-raised-button color="accent"> Update </button> 
+       <button *ngIf="!isUpdateActive" (click)="submit()" mat-raised-button color="accent"> Submit </button>
+       
+       <button mat-raised-button  (click)="clearForm()"> Clear </button>
+       
+      </form>
+    </div>
+    
+  
+  <!-- 
+    <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+      <mat-label>select a Category</mat-label>
+      <mat-select>
+       <mat-option *ngFor="let category of categories" [value]="category.label">
+         {{category.label}}
+       </mat-option>
+      </mat-select>
+     </mat-form-field> 
+
+    <mat-form-field  appearance="fill">
+      <mat-label>Enter Release Date</mat-label>
+       <input matInput #ReleaseDateInput  required [(ngModel)]="book.releaseDate" name="releaseDate" [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    
+    -->
+ 
+    
+    

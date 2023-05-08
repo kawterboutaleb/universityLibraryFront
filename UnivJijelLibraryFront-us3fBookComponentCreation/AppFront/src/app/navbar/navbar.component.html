@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-dark  p-0 m-0 mat-elevation-z1" style="background-color:#270042;" >
+    <div class="container-fluid " >
+        <div class="navbar-header p-0  " style="background-color: yellowgreen;">
+            <a class="navbar-brand  p-0 m-0"  data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="false" aria-controls="collapseExample">
+                <span class="navbar-toggler-icon p-2 m-2"></span>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a class="nav-link active pt-0 offset-xl-2 offset-md-2" aria-current="page" href="#">
+                    <img src="/assets/logoUniv.jpg" class="rounded-circle  " style=" width:36px; ">
+                </a>
+            
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                
+               
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{subLibrary}}
+                    </a>
+
+                    <ul class="dp-menu dropdown-menu " aria-labelledby="dropdownMenuLink">
+                        <li><a class="dropdown-item" href="#">FSEI library</a></li>
+                        <li><a class="dropdown-item" href="#">ST library</a></li>
+                        <li><a class="dropdown-item" href="#">-----</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <button class="btn text-white text-decoration-none ms-2" type="button">OPAC</button>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        En
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                        <li><a class="dropdown-item" href="#">French</a></li>
+                        <li><a class="dropdown-item" href="#">Arabic</a></li>
+                    </ul>
+                </li>
+               
+            </ul>
+            <!-- 
+              Material Design Search Bar 
+            <div class="md-form active-cyan-2 me-5 pb-0 ">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            </div> -->
+
+            
+           
+
+            <div class="dropdown pb-0 me-2">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi-person-circle h2"></i>
+                    <span class="d-none d-sm-inline mx-1">Kawter Boutaleb</span>
+                    <!--<i class="fa-solid fa-user-vneck"></i>-->
+                    <!--<img src="https://github.com/mdo.png" alt="hugenerd" width="40" height="40" class="rounded-circle">-->
+                    <!--<span class="d-none d-sm-inline mx-1">Hamida Bouaziz</span>-->
+                </a>
+                <ul class="dp-menu dropdown-menu text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">New project...</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

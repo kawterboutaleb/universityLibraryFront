@@ -1,0 +1,45 @@
+
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700');
+
+/** ======================  base css ==============================**/
+a:hover{ text-decoration: none; }
+
+
+.body{
+  max-width:100%;
+}
+
+  .navbar{
+    height: 40px;     
+    margin: 0;     
+    padding: 0;
+  }
+  
+  
+  
+
+
+  #content-container{
+    height: calc(100% - 40px);
+  }
+
+  #main_container{
+    height: 100%;
+    width: 100%;;
+  }
+  #sidebar_parentContainer{
+    max-height: calc(100% - 40px);
+  }
+
+
+
+  
+
+   
+
+
+
+
+    
+  

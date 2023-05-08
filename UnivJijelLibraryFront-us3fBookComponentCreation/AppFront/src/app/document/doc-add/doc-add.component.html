@@ -1,0 +1,67 @@
+
+<div class="addUpdateDocContainer container col-md-6 col-xl-4">
+    <form #addDocForm="ngForm"  >
+
+     <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+       <mat-label>Enter Title </mat-label>
+       <input matInput #titleInput maxlength="10" required  [(ngModel)]="doc.doc_title"  name="doc_title" >
+       <mat-hint align="end">{{titleInput.value.length}}/10</mat-hint>
+     </mat-form-field>
+   
+     <mat-form-field hintLabel="Max 100 characters" appearance="fill">
+        <mat-label>Enter nbr of copies</mat-label>
+        <input matInput #copiesInput maxlength="100" required [(ngModel)]="doc.doc_nbr_copies" name="doc_nbr_copies">
+        <mat-hint align="end">{{copiesInput.value.length}}/10</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field  appearance="fill">
+        <mat-label>Enter nbr of pages </mat-label>
+        <input matInput #pagesInput  required [(ngModel)]="doc.doc_nbr_pages" name="doc_nbr_pages">
+        <mat-hint align="end">{{pagesInput.value.length}}/10</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+        <mat-label>Enter notes </mat-label>
+        <input matInput #notesInput maxlength="10" required [(ngModel)]="doc.doc_notes" name="doc_notes" >
+        <mat-hint align="end">{{notesInput.value.length}}/10</mat-hint>
+      </mat-form-field>
+     
+    
+      <!-- 
+      <mat-form-field  appearance="fill">
+        <mat-label>Enter Release Date</mat-label>
+        <input matInput #ReleaseDateInput  required [(ngModel)]="book.releaseDate" name="releaseDate" [matDatepicker]="picker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field> 
+
+    
+
+
+      <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+       <mat-label>select a Category</mat-label>
+ <mat-select>
+   <mat-option *ngFor="let category of categories" [value]="category.label">
+     {{category.label}}
+   </mat-option>
+ </mat-select>
+ </mat-form-field>
+   -->
+
+
+      <button mat-raised-button class="mat-primary" type="submit" (click)="createDocument(addDocForm)" [disabled]="!addDocForm.valid">Save</button>
+      <button mat-raised-button  (click)="clearForm(addDocForm)">Clear Form</button>
+   
+      
+
+      
+     </form>
+   </div>
+   
+ 
+
+
+
+   
+   

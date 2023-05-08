@@ -1,0 +1,23 @@
+.btn-close {
+    font-size: 1.0rem;
+    opacity: 0.2;
+    transition: opacity 0.3s;
+
+}
+
+.nav-link:hover > .close {
+    opacity: 0.2;
+    border-bottom: 3px solid #893ac1;
+}
+
+.nav-link {
+    background-color: rgba(172, 255, 47, 0.211);
+    border-bottom: 3px solid yellowgreen ;
+    margin-right: 2px;
+
+}
+
+.nav-link:hover {
+    opacity: 0.8;
+    border-bottom: 2px solid #893ac1;;
+}

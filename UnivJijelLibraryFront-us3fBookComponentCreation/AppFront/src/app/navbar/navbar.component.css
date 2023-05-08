@@ -1,0 +1,23 @@
+#navbarSupportedContent .dp-menu li a  {
+    background-color: aliceblue;
+    color: black;
+}
+#navbarSupportedContent ul li a{
+    font-size:medium;
+    color:aliceblue;
+    padding-top: 6pt;
+
+}
+.navbar.container-fluid{
+    background-color: yellowgreen;
+}
+.dropdown-menu{
+    background-color: aliceblue;
+}
+
+.md-form {
+    width: 400px;
+}
+
+
+

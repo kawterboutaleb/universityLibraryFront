@@ -1,0 +1,180 @@
+<div   class="doc-header row bg-light  mb-2  mat-elevation-z3" >
+    <h2 class="me-5  col-auto m-0 " >Thesis</h2>
+    <!-- 
+    <a   (click)="openTab('/document/add',null)" class="col-auto"><i class="bi bi-plus-lg fa-6x" style="color:#6a17a6; font-size:  2em;"></i></a>
+    -->
+    <div class="col-auto ms-auto me-0">
+      <mat-form-field >
+        <input matInput type="text" (keyup)="applyFilter($event,'title')" placeholder="Title">
+      </mat-form-field>
+
+      <mat-form-field >
+        <input matInput type="text" (keyup)="applyFilter($event,'author')" placeholder="Author">
+      </mat-form-field>
+    </div>
+<!--
+    <div class="col-auto ms-auto me-0">
+      <mat-form-field >
+        <input matInput type="text" (keyup)="doFilter($event)" placeholder="Filter">
+      </mat-form-field>
+    </div>-->
+
+   <!-- <form class=" row g-2  col-auto m-0 ms-auto me-0" role="search">
+        <div class="col-auto m-0 p-0">
+            <input class="form-control  d-inline " type="search" placeholder="Search" aria-label="Search">
+        </div>
+        <div class="col-auto m-0 p-0 ps-2">
+            <button class="btn btn-outline-success d-inline" type="submit">Search</button>
+        </div>
+    </form>-->
+</div>
+
+<div class="doc-body  row mb-2 p-0 mat-elevation-z3 " >
+
+  
+
+
+<table  mat-table [dataSource]="dataSource" matSort  matSortStart="desc">
+
+   
+    <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+    <ng-container matColumnDef="doc_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_id}} </td>
+    </ng-container>
+    <ng-container matColumnDef="ts_defencePlace">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> defence place </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.ts_defencePlace}} </td>
+    </ng-container>
+    <ng-container matColumnDef="ts_url">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> url </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.ts_url}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="doc_title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> title </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_title}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="doc_complementaryTitle">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> complementary title </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_complementaryTitle}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_parallelTitle">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> parallel title </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_parallelTitle}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_setTitle">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> set title </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_setTitle}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_partNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> part number </th>
+        <td mat-cell *matCellDef="let thesis" style="text-align: center;"> {{thesis.doc_partNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_year">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> year </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_year}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_nbr_copies">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> nbr_copies </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_nbr_copies}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_keywords">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> keywords </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_keywords}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_illustration">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> illustration </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_illustration}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_nbr_pages">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> nbr_pages </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_nbr_pages}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_material">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> material </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_material}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_length">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> length </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_length}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_abstract">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> abstract </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_abstract}} </td>
+    </ng-container>
+    <ng-container matColumnDef="doc_notes">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> notes </th>
+        <td mat-cell *matCellDef="let thesis"> {{thesis.doc_notes}} </td>
+    </ng-container>
+
+
+    <!-- 
+    <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef> Details </th>
+        <td mat-cell *matCellDef="let document">
+          <a mat-icon-button color="primary" (click)="redirectToDetails(document)">
+              <mat-icon class="mat-18" style="color: #570f8a">reorder</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="update">
+          <th mat-header-cell *matHeaderCellDef> Update </th>
+          <td mat-cell *matCellDef="let document">
+            <a mat-icon-button color="accent" (click)="redirectToUpdate(document.Doc_id)" >
+                <mat-icon class="mat-18" style="color: rgb(123, 183, 5);">system_update</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Delete </th>
+            <td mat-cell *matCellDef="let document">
+              <a mat-icon-button color="warn" (click)="redirectToDelete(document.Doc_id)" >
+                  <mat-icon class="mat-18" style="color:red;">delete</mat-icon>
+              </a>
+            </td>
+          </ng-container>
+        
+        -->
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row
+      (click)="clickedRows.add(row)"
+      [class.demo-row-is-clicked]="clickedRows.has(row)"
+      *matRowDef="let row;columns:displayedColumns"> </tr>
+  </table>
+  <mat-paginator 
+  [pageSizeOptions]="[10, 30, 50]"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>
+
+<div *ngIf="!clickedRows.size">
+    Clicked rows will be logged here
+  </div>
+
+  <ul>
+    <li *ngFor="let clickedRow of clickedRows">
+      Clicked on {{clickedRow.doc_title}}
+    </li>
+  </ul>
+
+  

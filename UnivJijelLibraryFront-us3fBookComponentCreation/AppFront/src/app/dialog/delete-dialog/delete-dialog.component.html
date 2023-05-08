@@ -1,0 +1,17 @@
+<div mat-dialog-title fxLayoutAlign="center center" >Are You Sure?</div>
+
+
+<mat-dialog-content> <!--[formGroup]="form">-->
+  <p>Do you want toconfirm the deletion of   {{type}} :{{id}}</p>
+    <mat-form-field>
+        <input matInput
+                placeholder="Course Description"
+               formControlName="description">
+    </mat-form-field>
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button mat-raised-button class="mat-primary"   (click)="save()">Delete</button>
+  <button mat-raised-button mat-dialog-close  (click)="close()">Close</button>
+</mat-dialog-actions>
