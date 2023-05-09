@@ -11,6 +11,8 @@ import { DialogService } from 'src/app/services/dialog.service';
 import { TabService } from 'src/app/services/tab.service';
 import { Book } from '../../models/book.model';
 import { BookService } from '../../services/book.service';
+import { FormGroup, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-book-catlog',
@@ -97,19 +99,19 @@ column:string;
 
   }
   public redirectToUpdate (doc_id: string) {
-    //this.openTab('/book/edit/',doc_id);
-    this.openTab('/book/add',doc_id);
+    this.openTab('/book/edit/',doc_id);
+    //this.openTab('/book/add',doc_id);
   }
-  async  redirectToDelete(bookId: number){
+  async  redirectToDelete(doc_id: number){
 
-    const result = await this.dialogService.openDeleteDialog(bookId,'book');
+    const result = await this.dialogService.openDeleteDialog(doc_id,'book');
    if(result==='delete')
    {
 
-    this.bookService.deleteBook(bookId).subscribe(
+    this.bookService.deleteBook(doc_id).subscribe(
       data=>{
         for( var i = 0; i < this.booksList.length; i++){ 
-          if ( this.booksList[i].doc_id === bookId) {
+          if ( this.booksList[i].doc_id === doc_id) {
               this.booksList.splice(i, 1); 
           }
         }

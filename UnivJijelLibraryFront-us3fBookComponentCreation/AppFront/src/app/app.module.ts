@@ -36,7 +36,6 @@ import { DocUpdateComponent } from './document/doc-update/doc-update.component';
 import { DocCatalogComponent } from './document/doc-catalog/doc-catalog.component';
 import { ThesisComponent } from './thesis/thesis.component';
 import { ThesisCatalogComponent } from './thesis/thesis-catalog/thesis-catalog.component';
-import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -79,8 +78,7 @@ import { NgToastModule } from 'ng-angular-popup';
     MatButtonModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatSelectModule,
-    NgToastModule
+    MatSelectModule
     ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {

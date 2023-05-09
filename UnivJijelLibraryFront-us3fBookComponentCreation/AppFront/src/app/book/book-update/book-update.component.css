@@ -1,3 +1,7 @@
 .addUpdateBookContainer mat-form-field {
     display: block;
       }
+
+mat-form-field {
+  width: 80%;
+}
