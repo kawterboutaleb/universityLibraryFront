@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Params , Router} from '@angular/router';
 import { Book } from 'src/app/models/book.model';
 import { BookService } from 'src/app/services/book.service';
-import { NgToastService } from 'ng-angular-popup';
+
 
 @Component({
   selector: 'app-book-update',
@@ -17,7 +17,7 @@ export class BookUpdateComponent implements OnInit {
   registrationForm!: FormGroup;
   private bookIdToUpdate!: number;
 
-  constructor(private  fb: FormBuilder , private bookService:BookService,private toastService: NgToastService ,private route:ActivatedRoute , private router: Router ) { 
+  constructor(private  fb: FormBuilder , private bookService:BookService,private route:ActivatedRoute , private router: Router ) { 
   }
 
   ngOnInit(): void {
@@ -67,7 +67,7 @@ export class BookUpdateComponent implements OnInit {
   update() {
     this.bookService.updateBook(this.registrationForm.value, this.bookIdToUpdate)
       .subscribe(res => {
-        this.toastService.success({ detail: 'SUCCESS', summary: 'Book Details Updated Successful', duration: 3000 });
+      
         this.registrationForm.reset();
       });
   }
