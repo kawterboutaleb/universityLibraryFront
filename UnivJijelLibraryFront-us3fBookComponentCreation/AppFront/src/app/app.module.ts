@@ -78,7 +78,9 @@ import { ThesisCatalogComponent } from './thesis/thesis-catalog/thesis-catalog.c
     MatButtonModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatSelectModule,
+
+    MatSelectModule
+
     ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {
