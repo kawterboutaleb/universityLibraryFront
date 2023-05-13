@@ -1,0 +1,49 @@
+.mat-header-cell{
+    padding: 0px 0px 0px 0px;
+    
+}
+
+.mat-cell {
+    padding: 0px 0px 0px 0px;
+    text-align: left;
+  }
+
+.mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  .mat-row{
+    max-height: 40px;
+    height: 40px;
+    min-height: 40px;
+    text-align: center;
+}
+
+.mat-header-row{
+  max-height: 40px;
+  height: 40px;
+  min-height: 40px;
+  text-align: center;
+
+}
+  
+.mat-row:hover {
+    background-color: rgba(221, 219, 219, 0.556);
+    border-bottom: 2px solid #893ac1;;
+  }
+  
+  mat-icon{
+    color: #270042;
+    background: white;
+    border: none;
+    padding: 0px 0px 0px 0px;
+  }
+
+  .mat-column-doc_id{
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+  }

@@ -9,6 +9,7 @@ import { Book } from "./models/book.model";
 import { AppComponent } from "./app.component";
 import { HomeComponent } from "./home/home.component";
 import { BookUpdateComponent } from "./book/book-update/book-update.component";
+import { ThesisUpdateComponent } from "./thesis/thesis-update/thesis-update.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { DocAddComponent } from "./document/doc-add/doc-add.component";
 import { DocUpdateComponent } from "./document/doc-update/doc-update.component";
@@ -16,6 +17,7 @@ import { DocCatalogComponent } from "./document/doc-catalog/doc-catalog.componen
 import { DocumentComponent } from "./document/document.component";
 import { ThesisCatalogComponent } from "./thesis/thesis-catalog/thesis-catalog.component";
 import { ThesisComponent } from "./thesis/thesis.component";
+import { ThesisAddComponent } from "./thesis/thesis-add/thesis-add.component";
 
 const appRoutes: Routes =[
     { path: '', redirectTo: 'home',pathMatch:"full" },
@@ -35,7 +37,9 @@ const appRoutes: Routes =[
         ]},
     {path:'thesis', component: ThesisComponent, 
         children:[
-            {path:'catalog', component:ThesisCatalogComponent}
+            {path:'catalog', component:ThesisCatalogComponent},
+            {path:'add',component:ThesisAddComponent},
+            {path:'edit/:id',component:ThesisUpdateComponent}
         ]},
     {path:'dashboard', component:DashboardComponent},
     {path:'test', component: TestComponent},

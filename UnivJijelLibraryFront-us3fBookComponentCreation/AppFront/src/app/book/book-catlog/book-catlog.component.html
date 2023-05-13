@@ -4,6 +4,10 @@
 
     <div class="col-auto ms-auto me-0">
       <mat-form-field >
+        <input matInput type="text" (keyup)="applyFilter($event,'bk_isbn')" placeholder="ISBN">
+      </mat-form-field>
+
+      <mat-form-field >
         <input matInput type="text" (keyup)="applyFilter($event,'title')" placeholder="Title">
       </mat-form-field>
 
@@ -164,10 +168,10 @@
     </mat-paginator>
 </div>
 
-<div *ngIf="!clickedRows.size">
+<!--<div *ngIf="!clickedRows.size">
     Clicked rows will be logged here
   </div>
-
+-->
   <ul>
     <li *ngFor="let clickedRow of clickedRows">
       Clicked on {{clickedRow.doc_title}}

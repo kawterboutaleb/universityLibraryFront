@@ -19,8 +19,7 @@ import { ThesisService } from 'src/app/services/thesis.service';
 export class ThesisCatalogComponent implements OnInit {
 
   clickedRows = new Set<Thesis>();
-  displayedColumns: string[] = ['select','doc_id','ts_defencePlace','ts_url', 'doc_title', 'doc_complementaryTitle', 'doc_parallelTitle', 'doc_setTitle', 'doc_partNumber', 'doc_year', 'doc_nbr_copies', 'doc_keywords', 'doc_illustration',
-  'doc_nbr_pages', 'doc_material', 'doc_length', 'doc_abstract','doc_notes'];
+  displayedColumns: string[] = ['select','doc_id', 'doc_title',  'doc_year','ts_defencePlace', 'doc_nbr_copies', 'ts_url','details', 'update', 'delete'];
   thesisList: Thesis[] = [];
   dataSource: MatTableDataSource<Thesis> = new MatTableDataSource<Thesis>(this.thesisList);
 
@@ -97,30 +96,30 @@ column:string;
 
   }
   
-  /*
-  public redirectToUpdate (docId: string) {
-    this.openTab('/document/edit/',docId);
+  
+  public redirectToUpdate (doc_id: string) {
+    this.openTab('/thesis/edit/',doc_id);
   }
-  async  redirectToDelete(docId: number){
+  async  redirectToDelete(doc_id: number){
 
-    const result = await this.dialogService.openDeleteDialog(docId,'document');
+    const result = await this.dialogService.openDeleteDialog(doc_id,'thesis');
    if(result==='delete')
    {
 
-    this.docService.deleteDocument(docId).subscribe(
+    this.thesisService.deleteThesis(doc_id).subscribe(
       data=>{
-        for( var i = 0; i < this.docsList.length; i++){ 
-          if ( this.docsList[i].doc_id === docId) {
-              this.docsList.splice(i, 1); 
+        for( var i = 0; i < this.thesisList.length; i++){ 
+          if ( this.thesisList[i].doc_id === doc_id) {
+              this.thesisList.splice(i, 1); 
           }
         }
-        this.dataSource.data = this.docsList;
+        this.dataSource.data = this.thesisList;
 
       }
     );
   }
   } 
-  */
+  
 
   openTab(url: string, id:string) {
     this.tabService.addTab(url, id);
@@ -130,6 +129,8 @@ column:string;
     }
     this.router.navigateByUrl(url);
   }
+
+  
 }
 
 

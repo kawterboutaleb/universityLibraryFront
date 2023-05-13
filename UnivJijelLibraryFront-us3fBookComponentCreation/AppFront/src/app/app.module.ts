@@ -36,6 +36,8 @@ import { DocUpdateComponent } from './document/doc-update/doc-update.component';
 import { DocCatalogComponent } from './document/doc-catalog/doc-catalog.component';
 import { ThesisComponent } from './thesis/thesis.component';
 import { ThesisCatalogComponent } from './thesis/thesis-catalog/thesis-catalog.component';
+import { ThesisAddComponent } from './thesis/thesis-add/thesis-add.component';
+import { ThesisUpdateComponent } from './thesis/thesis-update/thesis-update.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { ThesisCatalogComponent } from './thesis/thesis-catalog/thesis-catalog.c
     DocUpdateComponent,
     DocCatalogComponent,
     ThesisComponent,
-    ThesisCatalogComponent
+    ThesisCatalogComponent,
+    ThesisAddComponent,
+    ThesisUpdateComponent
       ],
   imports: [
     BrowserModule,

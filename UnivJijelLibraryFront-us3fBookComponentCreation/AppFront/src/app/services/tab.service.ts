@@ -15,8 +15,10 @@ export class TabService{
     {name:'doc Catalog', url:'/document/catalog', id: null},
     {name:'thesis Catalog', url:'/thesis/catalog', id: null},
     {name:'Book Add', url:'/book/add', id: null},
+    {name:'Thesis Add', url:'/thesis/add', id: null},
     {name:'Document Add', url:'/document/add', id: null},
     {name:'Book Update', url:'/book/edit/', id: null},
+    {name:'Thesis Update', url:'/thesis/edit/', id: null},
     {name:'doc Update', url:'/document/edit/', id: null},
     {name:'Dashboard', url:'/dashboard', id: null}
     
