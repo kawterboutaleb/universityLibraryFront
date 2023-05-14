@@ -6,6 +6,11 @@ display: block;
   mat-form-field {
 	width: 80%;
   }
+
+  .example-additional-selection {
+	opacity: 0.75;
+	font-size: 0.75em;
+  }
   /*
 .div-add-book{
 	margin-bottom: 2em;

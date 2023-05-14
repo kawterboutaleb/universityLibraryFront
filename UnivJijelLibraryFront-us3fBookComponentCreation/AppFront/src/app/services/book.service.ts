@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 
 import { Book } from '../models/book.model';
+import { Editor } from '../models/editor.model';
 
 
 @Injectable({
@@ -34,6 +35,12 @@ export class BookService {
    public deleteBook(bookId:number):Observable<void>{
     return this.http.delete<void>(`http://localhost:8060/api/book/delete/${bookId}`);
    }
+   public getAllEditors():Observable<Editor[]>{
+    return this.http.get<Editor[]>('http://localhost:8060/api/editor/editors');
+ }
+ public deleteEditor(ID:number):Observable<void>{
+  return this.http.delete<void>(`http://localhost:8060/api/editor/delete/${ID}`);
+ }
    /*
    loadCategories():Observable<Category[]>{
 

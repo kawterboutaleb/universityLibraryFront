@@ -36,6 +36,11 @@ import { DocUpdateComponent } from './document/doc-update/doc-update.component';
 import { DocCatalogComponent } from './document/doc-catalog/doc-catalog.component';
 import { ThesisComponent } from './thesis/thesis.component';
 import { ThesisCatalogComponent } from './thesis/thesis-catalog/thesis-catalog.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { CommonModule } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 @NgModule({
   declarations: [
@@ -78,7 +83,12 @@ import { ThesisCatalogComponent } from './thesis/thesis-catalog/thesis-catalog.c
     MatButtonModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatSelectModule
+    MatSelectModule, 
+    CommonModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    NgSelectModule
+
     ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {

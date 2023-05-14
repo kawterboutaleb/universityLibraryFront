@@ -2,178 +2,97 @@
  
 <div id="sidebarContainer" class=" collapse multi-collapse     flex-column  align-items-center align-items-sm-start me-0 px-0 py-0 mb-0 pb-0  text-white "
     style="  overflow-y:scroll; overflow-y:auto; ">  
-<!--
-<div id="sidebarContainer" class="collapse multi-collapse flex-column align-items-center align-items-sm-start me-0 px-0 py-0 mb-0 pb-0 text-white" style="height: 400px; overflow-y: scroll;"> -->
 
-
-
-    <!--overflow-y:auto to show the scroolbar only when the context overflow-->
-
-
-
-
+    
     <ul id="menu_sidebar" class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu_sidebar"> 
-     <!--<ul id="menu_sidebar" class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu_sidebar">  -->
-        
-        <li class="nav-item my-1"  (click)="openTab('/home', null)"   >
-            <a  class="nav-link align-middle px-0">
-                <i class="bi bi-house-fill p-2"></i>
-                 <span class="ms-3 d-none d-sm-inline">Home</span>    
+           
+           <li class="nav-item my-1"  (click)="openTab('/home', null)"   >
+               <a  class="nav-link align-middle px-0">
+                   <i class="bi bi-house-fill p-2"></i>
+                    <span class="ms-3 d-none d-sm-inline">Home</span>    
+               </a>
+           </li>
+   
+           <li class="my-1 ">
+               <a href="#acquisitionMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                   <i class="bi bi-bag-plus p-2"></i> <span class="ms-1 d-none d-sm-inline p-2"> Acquisition </span> <span class="bi bi-chevron-left pull-right p-2"></span>
+               </a>
+           </li>
+           <li class="my-1 ">
+               <a href="#dashbordMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                   <i class="bi bi-speedometer p-2"></i> <span class="ms-3 d-none d-sm-inline">Dashboard</span> <span class="bi bi-chevron-left pull-right p-2"></span>
+                </a>
+               <ul class="collapse nav flex-column ms-1 text-center" id="dashbordMenu" data-bs-parent="#menu">
+                   <li class="w-100">
+                       
+                       <a class="nav-link px-0" (click)="openTab('/dashboard', null)" > <i class="bi bi-bar-chart-fill me-2"></i> <span class="d-none d-sm-inline">Show statistics</span> </a>
+                   </li>
+                   <li>
+                       
+                       <a class="nav-link px-0"> <i class="bi bi-file-earmark-text-fill me-2"></i> <span class="d-none d-sm-inline">Generate reports</span>  </a>
+                   </li>
+               </ul>
+           </li>
+           
+           <li class="my-1 ">
+               <a href="#bookMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                   <i class="bi bi-book-fill  p-2"></i> <span class="ms-3 d-none d-sm-inline"> Manage Document </span><span class="bi bi-chevron-left pull-right p-2"></span>
+               </a>
+               <ul class="collapse nav flex-column ms-1 text-center " id="bookMenu" data-bs-parent="#menu">
+                   <li class="w-100 " (click)="openTab('/book/catalog',null)">
+                       <a class="nav-link px-0"> <i class="bi bi-journal-text me-2"></i> <span class="d-none d-sm-inline"> Book</span> </a>
+                   </li>
+                  
+                   <li class="w-100 " (click)="openTab('/thesis/catalog',null)">
+                       <a class="nav-link px-0"> <i class="bi bi-journal-bookmark me-2"></i> <span class="d-none d-sm-inline"> Thesis</span> </a>
+                   </li>
+                   
+               </ul>
+           </li>
+           <li class="my-1 ">
+               <a href="#loanMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                   <i class="bi bi-box-arrow-right p-2"></i> <span class="ms-1 d-none d-sm-inline"> Manage Loans</span><span class="bi bi-chevron-left pull-right p-2"></span>
+               </a>
+               <ul class="collapse nav flex-column ms-1 text-center" id="loanMenu" data-bs-parent="#menu">
+                   
+                   <li class="">
+                       <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
+                   </li>
+                   <li>
+                       <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
+                   </li>
+               </ul>
+           </li>
+           <li class="my-1 ">
+               <a href="#userMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                   <i class="bi bi-people-fill p-2"></i>
+                   <span class="ms-1 d-none d-sm-inline">Manage User</span>
+                   <span class="bi bi-chevron-left pull-right p-2"></span>
+               </a>
+               <ul class="collapse nav flex-column ms-1 text-center" id="userMenu" data-bs-parent="#menu">
+                   <li class="w-100 ">
+                       <a  class="nav-link px-0 ">
+                           <i class="bi bi-mortarboard-fill me-2"></i> <span class="d-none d-sm-inline ">Students</span> </a>
+                   </li>
+                   <li class="w-100 ">
+                       <a  class="nav-link px-0 ">
+                           <i class="bi bi-person-lines-fill me-2"></i> <span class="d-none d-sm-inline ">Professors</span> </a>
+                   </li>
+                   <li class="w-100 " >
+                       <a   class="nav-link px-0 ">
+                           <i class="bi bi-person-badge me-2"></i> <span class="d-none d-sm-inline ">Librarian</span> </a> 
+                   </li>
+                 
+               </ul>
+           </li>
+           <li class="my-1 ">
+            <a href="#administrationMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                <i class="bi bi-gear p-2"></i> <span class="ms-1 d-none d-sm-inline p-2"> Administration </span> <span class="bi bi-chevron-left pull-right p-2"></span>
             </a>
         </li>
-        
-        <li class="my-1 ">
-            <a href="#dashbordMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                <i class="bi bi-speedometer p-2"></i> <span class="ms-3 d-none d-sm-inline">Dashboard</span> <span class="bi bi-chevron-left pull-right p-2"></span>
-             </a>
-            <ul class="collapse nav flex-column ms-1" id="dashbordMenu" data-bs-parent="#menu">
-                <li class="w-100">
-                    <a class="nav-link px-0" (click)="openTab('/dashboard', null)" > <span class="d-none d-sm-inline">Show statistics</span> </a>
-                </li>
-                <li>
-                    <a class="nav-link px-0"> <span class="d-none d-sm-inline">Generate reports</span>  </a>
-                </li>
-            </ul>
-        </li>
-        <li class="my-1 ">
-            <a href="#bookMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                <i class="bi bi-book-fill  p-2"></i> <span class="ms-3 d-none d-sm-inline">Document</span><span class="bi bi-chevron-left pull-right p-2"></span>
-            </a>
-            <ul class="collapse nav flex-column ms-1" id="bookMenu" data-bs-parent="#menu">
-                <li class="w-100" (click)="openTab('/book/catalog',null)">
-                    <a  class="nav-link px-0"> <i class="bi bi-search me-2"></i> <span class="d-none d-sm-inline">Books</span>  </a>
-                </li>
-                <li class="w-100" (click)="openTab('/thesis/catalog',null)">
-                    <a  class="nav-link px-0"> <i class="bi bi-search me-2"></i> <span class="d-none d-sm-inline">Thesis</span>  </a>
-                </li>
-                <!--
-                <li (click)="openTab('/book/add', null)">
-                    <a  class="nav-link px-0"> <i class="bi bi-plus-lg me-2"></i><span class="d-none d-sm-inline">Add new book</span> </a>
-                </li> -->
-            </ul>
-        </li>
-        <li class="my-1 ">
-            <a href="#loanMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                <i class="bi bi-box-arrow-right p-2"></i> <span class="ms-1 d-none d-sm-inline">Loans</span><span class="bi bi-chevron-left pull-right p-2"></span>
-            </a>
-            <ul class="collapse nav flex-column ms-1" id="loanMenu" data-bs-parent="#menu">
-                <li class="">
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
-                </li>
-            </ul>
-        </li>
-        <li class="my-1 ">
-            <a href="#studentMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                <i class="bi bi-mortarboard-fill p-2" ></i> <span class="ms-1 d-none d-sm-inline">Students</span> <span class="bi bi-chevron-left pull-right p-2"></span>
-             </a>
-            <ul class="collapse nav flex-column ms-1" id="studentMenu" data-bs-parent="#menu">
-                <li class="w-100">
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                </li>
-                <li class="w-100">
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                </li>
-            </ul>
-        </li>
-        
-        <li class="my-1 ">
-            <a href="#professorMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                <i class="bi bi-person-lines-fill p-2"></i> <span class="ms-1 d-none d-sm-inline p-2">Professors</span> <span class="bi bi-chevron-left pull-right p-2"></span>
-             </a>
-            <ul class="collapse nav flex-column ms-1" id="professorMenu" data-bs-parent="#menu">
-                <li class="w-100">
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                </li>
-                <li class="w-100">
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                </li>
-            </ul>
-        </li>
-
-        <li class="my-1 ">
-            <a href="#acquisitionMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                <i class="bi bi-bag-plus p-2"></i> <span class="ms-1 d-none d-sm-inline p-2"> Acquisition </span> <span class="bi bi-chevron-left pull-right p-2"></span>
-            </a>
-        </li>
-
-        
-        <li class="my-1 ">
-            <a href="#librarianMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                <i class="bi bi-person-badge p-2"></i> <span class="ms-1 d-none d-sm-inline p-2">Librarian</span> <span class="bi bi-chevron-left pull-right p-2"></span>
-             </a>
-            <ul class="collapse nav flex-column ms-1" id="librarianMenu" data-bs-parent="#menu">
-                <li class="w-100">
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                </li>
-                <li class="w-100">
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
-                </li>
-            </ul>
-        </li>
-        
-    </ul>
-    <li class="my-1 ">
-        <a href="#administrationMenu" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-            <i class="bi bi-gear p-2"></i> <span class="ms-1 d-none d-sm-inline p-2"> Administration </span> <span class="bi bi-chevron-left pull-right p-2"></span>
-        </a>
-    </li>
+           
+       </ul>
+    
 
     
 

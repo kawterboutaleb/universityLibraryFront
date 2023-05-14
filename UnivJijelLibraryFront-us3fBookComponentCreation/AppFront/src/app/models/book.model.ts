@@ -1,3 +1,10 @@
+import { Author } from "./author.model";
+import { Collection } from "./collection.model";
+import { DocCategory } from "./docCategory.model";
+import { DocFormat } from "./docFormat.model";
+import { DocStatus } from "./docStatus.model";
+import { Editor } from "./editor.model";
+import { SubCollection } from "./subCollection.model";
 
 export class Book{
     doc_id!: number;
@@ -17,6 +24,15 @@ export class Book{
     doc_length!: number;
     doc_abstract!: string;
     doc_notes!: string;
+    subCollection!: SubCollection;
+    collection!: Collection;
+    documentFormat!: DocFormat;
+    documentCategory!: DocCategory;
+    documentStatus!: DocStatus;
+    language!: string;
+    country!: string;
+    documentAuthors!: Author;
+    editors!: Editor;
 
 
 }
