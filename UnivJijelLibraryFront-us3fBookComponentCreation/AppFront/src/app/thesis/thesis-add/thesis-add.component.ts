@@ -4,6 +4,10 @@ import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { Thesis } from 'src/app/models/thesis.model';
 import { ThesisService } from 'src/app/services/thesis.service';
 
+interface Food {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-thesis-add',
   templateUrl: './thesis-add.component.html',
@@ -20,6 +24,12 @@ export class ThesisAddComponent implements OnInit {
   constructor(private  fb: FormBuilder, private thesisService:ThesisService ,private route:ActivatedRoute , private router: Router) { 
 
   }
+
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'},
+  ];
 
   registrationForm!: FormGroup;
 
