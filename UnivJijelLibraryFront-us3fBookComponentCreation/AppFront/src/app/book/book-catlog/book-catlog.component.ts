@@ -10,9 +10,9 @@ import { DialogService } from 'src/app/services/dialog.service';
 import { TabService } from 'src/app/services/tab.service';
 import { Book } from '../../models/book.model';
 import { BookService } from '../../services/book.service';
-import { FormGroup, FormControl,FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl,FormBuilder,Validators  } from '@angular/forms';
 import { ActivatedRoute, Params , Router} from '@angular/router';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-book-catlog',
@@ -29,7 +29,7 @@ export class BookCatlogComponent implements OnInit {
    'doc_year','details', 'update', 'delete'];
   booksList: Book[] = [];
   dataSource: MatTableDataSource<Book> = new MatTableDataSource<Book>(this.booksList);
-
+  updateForm: FormGroup;
 column:string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -39,25 +39,27 @@ column:string;
   id:number;
   registrationForm!: FormGroup;
   private bookIdToUpdate!: number;
+  private _dialog: any;
 
-  constructor(private  fb: FormBuilder,private dialogService:DialogService , private bookService: BookService, private tabService:TabService, private router:Router, private activeRoute:ActivatedRoute) { 
-    this.registrationForm = this.fb.group({
-      bk_isbn: [''],
-      doc_title: [''],
-      bk_edition: [''],
-      doc_complementaryTitle: [''],
-      doc_parallelTitle: [''],
-      doc_setTitle: [''],
-      doc_partNumber: [''],
-      doc_year: [''],
-      doc_nbr_copies: [''],
-      doc_keywords: [''],
-      doc_illustration: [''],
-      doc_nbr_pages: [''],
-      doc_material: [''],
-      doc_length: [''],
-      doc_abstract: [''],
-      doc_notes: ['']
+  constructor(private  fb: FormBuilder,private dialogService:DialogService , private bookService: BookService, private tabService:TabService, private router:Router, private activeRoute:ActivatedRoute ,private modalService: NgbModal) { 
+    
+    this.updateForm = this.fb.group({
+      bk_isbn: ['', Validators.required],
+      doc_title: ['', Validators.required],
+      bk_edition: ['', Validators.required],
+      doc_complementaryTitle: ['', Validators.required],
+      doc_parallelTitle: ['', Validators.required],
+      doc_setTitle: ['', Validators.required],
+      doc_partNumber: ['', Validators.required],
+      doc_year: ['', Validators.required],
+      doc_nbr_copies: ['', Validators.required],
+      doc_keywords: ['', Validators.required],
+      doc_illustration: ['', Validators.required],
+      doc_nbr_pages: ['', Validators.required],
+      doc_material: ['', Validators.required],
+      doc_length: ['', Validators.required],
+      doc_abstract: ['', Validators.required],
+      doc_notes: ['', Validators.required],
     });
   }
 
@@ -66,7 +68,7 @@ column:string;
   ngOnInit(): void {
 
     this.activeRoute.params.subscribe((params:Params)=>{
-      this.id=params['id'];
+      this.id=params['doc_id'];
     });
   
     if(this.id==undefined){ // add new book
@@ -97,9 +99,11 @@ column:string;
         alert(error.message);
       });
     
-
+      
 
   }
+
+  
 
   fillFormToUpdate(book: Book) {
     this.registrationForm.setValue({
@@ -122,16 +126,17 @@ column:string;
     })
   }
 
+  selectedBook: Book; // Define a property to store the selected book
+
+  openModal(book: Book) {
+  this.selectedBook = book; // Store the selected book data in the property
+  // Code to open the modal here
+ }
+
   update() {
-    this.bookService.updateBook(this.registrationForm.value, this.bookIdToUpdate)
-      .subscribe(res => {
-        this.registrationForm.reset();
-      });
+    const updatedData = this.updateForm.value; // Get the updated form values
+    // Perform update operation using the updatedData object
   }
-  clearForm(){
-    this.registrationForm.reset();
-  }
-  
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -155,10 +160,6 @@ column:string;
   }
 
 
-  /*public doFilter = (event: Event) => {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
-  }*/
 
   applyFilter(event: Event, column: string){
     this.column=column;
