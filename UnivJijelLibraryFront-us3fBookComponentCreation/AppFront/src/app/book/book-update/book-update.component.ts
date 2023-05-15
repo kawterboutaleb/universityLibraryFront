@@ -16,6 +16,7 @@ export class BookUpdateComponent implements OnInit {
   id:number;
   registrationForm!: FormGroup;
   private bookIdToUpdate!: number;
+
   /*
   constructor(private  fb: FormBuilder , private bookService:BookService ,private route:ActivatedRoute , private router: Router ) { 
   } */
@@ -38,6 +39,7 @@ export class BookUpdateComponent implements OnInit {
       doc_abstract: [''],
       doc_notes: ['']
     });
+
   }
   /*
   ngOnInit(): void {

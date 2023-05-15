@@ -18,6 +18,7 @@ import { SubCollectionService } from 'src/app/services/subCollection.service';
 
 //import { NgToastService } from 'ng-angular-popup';
 
+
 @Component({
   selector: 'app-book-add',
   templateUrl: './book-add.component.html',
@@ -39,6 +40,7 @@ export class BookAddComponent implements OnInit {
   filteredEditors: Editor[] = [];
   selected = [];
   constructor(private dialogService:DialogService ,private  fb: FormBuilder, private bookService:BookService, private collcService:CollectionService, private scollcService:SubCollectionService ,private route:ActivatedRoute , private router: Router) { 
+
   }
   registrationForm!: FormGroup;
 
@@ -109,6 +111,7 @@ export class BookAddComponent implements OnInit {
     
     this.bookService.saveBook(this.registrationForm.value)
       .subscribe(res => {
+
         this.registrationForm.reset();
       });
   }
@@ -139,6 +142,7 @@ export class BookAddComponent implements OnInit {
   update() {
     this.bookService.updateBook(this.registrationForm.value, this.bookIdToUpdate)
       .subscribe(res => {
+
         this.registrationForm.reset();
       });
   }

@@ -39,7 +39,6 @@ import { ThesisCatalogComponent } from './thesis/thesis-catalog/thesis-catalog.c
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -87,7 +86,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     CommonModule,
     MatChipsModule,
     MatAutocompleteModule,
-    NgSelectModule
+    MatSelectModule
 
     ],
   providers: [
