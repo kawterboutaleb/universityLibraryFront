@@ -13,6 +13,8 @@ import { BookService } from '../../services/book.service';
 import { FormGroup, FormControl,FormBuilder,Validators  } from '@angular/forms';
 import { ActivatedRoute, Params , Router} from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-book-catlog',
@@ -22,15 +24,12 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class BookCatlogComponent implements OnInit {
 
   clickedRows = new Set<Book>();
-  /* displayedColumns: string[] = ['select','doc_id', 'bk_isbn', 'doc_title', 'bk_edition', 'doc_complementaryTitle', 'doc_parallelTitle', 'doc_setTitle',
-   'doc_partNumber', 'doc_year', 'doc_nbr_copies','doc_keywords','doc_illustration','doc_nbr_pages','doc_material','doc_length','doc_abstract','doc_notes','details', 'update', 'delete']; */
-  
+
   displayedColumns: string[] = ['select','doc_id', 'bk_isbn', 'doc_title', 'bk_edition',
    'doc_year','details', 'update', 'delete'];
   booksList: Book[] = [];
   dataSource: MatTableDataSource<Book> = new MatTableDataSource<Book>(this.booksList);
-  updateForm: FormGroup;
-column:string;
+  column:string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -40,51 +39,56 @@ column:string;
   registrationForm!: FormGroup;
   private bookIdToUpdate!: number;
   private _dialog: any;
+  filterByISBN: string;
+  filterByTitle: string;
+  updateForm: FormGroup;
 
   constructor(private  fb: FormBuilder,private dialogService:DialogService , private bookService: BookService, private tabService:TabService, private router:Router, private activeRoute:ActivatedRoute ,private modalService: NgbModal) { 
     
-    this.updateForm = this.fb.group({
-      bk_isbn: ['', Validators.required],
-      doc_title: ['', Validators.required],
-      bk_edition: ['', Validators.required],
-      doc_complementaryTitle: ['', Validators.required],
-      doc_parallelTitle: ['', Validators.required],
-      doc_setTitle: ['', Validators.required],
-      doc_partNumber: ['', Validators.required],
-      doc_year: ['', Validators.required],
-      doc_nbr_copies: ['', Validators.required],
-      doc_keywords: ['', Validators.required],
-      doc_illustration: ['', Validators.required],
-      doc_nbr_pages: ['', Validators.required],
-      doc_material: ['', Validators.required],
-      doc_length: ['', Validators.required],
-      doc_abstract: ['', Validators.required],
-      doc_notes: ['', Validators.required],
-    });
-  }
+  } 
 
 
 
   ngOnInit(): void {
 
-    this.activeRoute.params.subscribe((params:Params)=>{
-      this.id=params['doc_id'];
+    this.updateForm = this.fb.group({
+      bk_isbn: ['', Validators.required],
+      doc_title: ['', Validators.required],
+      bk_edition: [''],
+      doc_complementaryTitle: [''],
+      doc_parallelTitle: [''],
+      doc_setTitle: [''],
+      doc_partNumber: [''],
+      doc_year: [''],
+      doc_nbr_copies: [''],
+      doc_keywords: [''],
+      doc_illustration: [''],
+      doc_nbr_pages: [''],
+      doc_material: [''],
+      doc_length: [''],
+      doc_abstract: [''],
+      doc_notes: ['']
     });
+    this.bookIdToUpdate = this.book.doc_id;
+    /*
+    this.dataSource.filterPredicate = (data: Book, filter: string) => {
+      const filterObject = JSON.parse(filter);
+      const isbnMatch = data.bk_isbn.toLowerCase().includes(filterObject.isbn);
+      const titleMatch = data.doc_title.toLowerCase().includes(filterObject.title);
   
-    if(this.id==undefined){ // add new book
-      // ...
-    } else { // update existing book
-      this.bookService.getBook(this.id).subscribe(result => { 
-        if (result && result!=null){
-          this.book=result;
-          this.fillFormToUpdate(this.book);
-          this.bookIdToUpdate = this.id; // set the bookIdToUpdate
-          return;
-        }
-        console.log("no result");
-      });
-    }
+      return isbnMatch && titleMatch;
+    };
 
+    this.bookService.getAllBooks().subscribe(
+      books => {
+        this.booksList = books;
+        this.dataSource.data = this.booksList;
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+     */
     this.bookService.getAllBooks().subscribe(
       books => {
         this.booksList = books;
@@ -97,46 +101,84 @@ column:string;
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
-      });
+      }); 
     
       
 
   }
-
   
+ 
+  
+  
+  applyFilter(event: Event, column: string){
+    this.column=column;
+    this.dataSource.filter= (event.target as HTMLInputElement).value.trim().toLocaleLowerCase();
+    if(this.dataSource.paginator){
+      this.dataSource.paginator.firstPage();
+    }
+  }  
+  /*
+  applyFilter(event: Event, column: string) {
+    const value = (event.target as HTMLInputElement).value.trim().toLocaleLowerCase();
 
-  fillFormToUpdate(book: Book) {
-    this.registrationForm.setValue({
-      bk_isbn: book.bk_isbn,
-      doc_title: book.doc_title,
-      bk_edition: book.bk_edition,
-      doc_complementaryTitle: book.doc_complementaryTitle,
-      doc_parallelTitle: book.doc_parallelTitle,
-      doc_setTitle: book.doc_setTitle,
-      doc_partNumber: book.doc_partNumber,
-      doc_year: book.doc_year,
-      doc_nbr_copies: book.doc_nbr_copies,
-      doc_keywords: book.doc_keywords,
-      doc_illustration: book.doc_illustration,
-      doc_nbr_pages: book.doc_nbr_pages,
-      doc_material: book.doc_material,
-      doc_length: book.doc_length,
-      doc_abstract: book.doc_abstract,
-      doc_notes: book.doc_notes
-    })
+    if (column === 'bk_isbn') {
+      this.filterByISBN = value;
+    } else if (column === 'doc_title') {
+      this.filterByTitle = value;
+    }
+  
+    this.dataSource.filter = JSON.stringify({
+      isbn: this.filterByISBN,
+      title: this.filterByTitle
+    }); 
+  
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  } */
+  
+  /*
+  applyFilter(event: Event, column: string) {
+    const value = (event.target as HTMLInputElement).value.trim().toLocaleLowerCase();
+  
+    if (column === 'isbn') {
+      this.filterByISBN = value;
+    } else if (column === 'title') {
+      this.filterByTitle = value;
+    }
+  
+    this.dataSource.filter = JSON.stringify({
+      isbn: this.filterByISBN,
+      title: this.filterByTitle
+    });
+  
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  } */
+  
+  
+  
+  edit(book: Book){
+    this.book=book;
+    this.bookIdToUpdate = book.doc_id;
   }
 
-  selectedBook: Book; // Define a property to store the selected book
-
-  openModal(book: Book) {
-  this.selectedBook = book; // Store the selected book data in the property
-  // Code to open the modal here
- }
-
-  update() {
-    const updatedData = this.updateForm.value; // Get the updated form values
-    // Perform update operation using the updatedData object
+  updateBook(){
+    
+    
+    this.bookService.updateBook(this.book,this.bookIdToUpdate).subscribe(
+      (resp) => {
+        console.log(resp);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+    this.modalService.dismissAll();
   }
+
+
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -160,15 +202,7 @@ column:string;
   }
 
 
-
-  applyFilter(event: Event, column: string){
-    this.column=column;
-    this.dataSource.filter= (event.target as HTMLInputElement).value.trim().toLocaleLowerCase();
-    if(this.dataSource.paginator){
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
+  
   public redirectToDetails(book: Book) {
     
     this.dialogService.openBookDetailDialog(book);

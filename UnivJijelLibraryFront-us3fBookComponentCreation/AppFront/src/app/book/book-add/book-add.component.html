@@ -1,560 +1,128 @@
 
-    <div class="registration-form m-3 p-4">
-     <form [formGroup]="registrationForm"  >
-      <div class="row">
-        <div class="col-md-6">
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter ID</mat-label>
-            <input formControlName="doc_id" required matInput placeholder="id">
-          </mat-form-field>
-
-        </div>
-        <div class="col-md-6">
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter ISBN</mat-label>
-            <input formControlName="bk_isbn" required matInput placeholder="isbn">
-          </mat-form-field>
-
-        </div>
-        
-        <div class="col-md-6">
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter Title</mat-label>
-            <input formControlName="doc_title" required matInput placeholder="title">
-          </mat-form-field>
-
-        </div>
-        
-        <div class="col-md-6">
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter book edition </mat-label>
-            <input formControlName="bk_edition" matInput placeholder="edition">
-          </mat-form-field>
-
-        </div>
-
-        <div class="col-md-6">
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter complementary title </mat-label>
-            <input formControlName="doc_complementaryTitle" matInput placeholder="complementary title">
-          </mat-form-field>
-
-        </div>
-
-        <div class="col-md-6">
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter parallel title </mat-label>
-            <input formControlName="doc_parallelTitle" matInput placeholder="parallel title">
-          </mat-form-field>
-
-        </div>
-  
-        <div class="col-md-6">
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter set title </mat-label>
-            <input formControlName="doc_setTitle" matInput placeholder="set title">
-          </mat-form-field>
-
-        </div>
-
-        <div class="col-md-6">
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter part number </mat-label>
-            <input formControlName="doc_partNumber" matInput placeholder="part number">
-            
-           </mat-form-field>
-
-        </div>
-         
-        <div class="col-md-6">
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter year </mat-label>
-            <input formControlName="doc_year" matInput placeholder="year">
-            
-           </mat-form-field>
-
-        </div>
-         
-        <div class="col-md-6">
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter number of copies </mat-label>
-            <input formControlName="doc_nbr_copies" matInput placeholder="number of copies">
-            
-           </mat-form-field>
-
-        </div>
-         
-        <div class="col-md-6"> 
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter keywords</mat-label>
-            <input formControlName="doc_keywords" matInput placeholder=" keywords">
-            
-           </mat-form-field>
-
-        </div>
-
-        <div class="col-md-6"> 
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter illustration </mat-label>
-            <input formControlName="doc_illustration" matInput placeholder="illustration">
-            
-           </mat-form-field>
-
-        </div>
-        <div class="col-md-6"> 
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter number of pages</mat-label>
-            <input formControlName="doc_nbr_pages" matInput placeholder="number of pages">
-           
-           </mat-form-field>
-
-        </div>
-        
-        <div class="col-md-6"> 
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter material </mat-label>
-            <input formControlName="doc_material" matInput placeholder="material">
-            
-           </mat-form-field>
-
-        </div>
-        <div class="col-md-6"> 
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter length </mat-label>
-            <input formControlName="doc_length" matInput placeholder="length">
-            
-           </mat-form-field>
-
-        </div>
-        <div class="col-md-6"> 
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter abstract </mat-label>
-            <input formControlName="doc_abstract" matInput placeholder="abstract">
-            
-           </mat-form-field>
-
-        </div>
-        
-        <div class="col-md-6">
-          <mat-form-field  appearance="fill">
-            <mat-label>Enter notes </mat-label>
-            <input formControlName="doc_notes" matInput placeholder="notes">
-            
-           </mat-form-field>
-
-        </div>
-        <div class="col-md-6">
-          <mat-form-field appearance="fill">
-            <input matInput placeholder="select sub collection" >
-            <mat-select [formControl]="myControl" multiple>
-              <mat-select-trigger>
-                {{myControl.value?.[0] || ''}}
-                <span *ngIf="(myControl.value?.length || 0) > 1" class="example-additional-selection">
-                  (+{{(myControl.value?.length || 0) - 1}} {{myControl.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let scollc of scollections" [value]="scollc.scol_title">{{scollc.scol_title}}</mat-option>
-            </mat-select>
-            <a mat-icon-button matSuffix data-bs-toggle="modal" data-bs-target="#addsubCollection">
-              <mat-icon>add</mat-icon>
-            </a>
-          </mat-form-field>
-  
-        </div>
-        <div class="col-md-6">
-          <mat-form-field appearance="fill">
-            <input matInput placeholder="select collection" >
-            <mat-select [formControl]="myControl" multiple>
-              <mat-select-trigger>
-                {{myControl.value?.[0] || ''}}
-                <span *ngIf="(myControl.value?.length || 0) > 1" class="example-additional-selection">
-                  (+{{(myControl.value?.length || 0) - 1}} {{myControl.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let collection of collections" [value]="collection.col_title">{{collection.col_title}}</mat-option>
-            </mat-select>
-            <a mat-icon-button matSuffix data-bs-toggle="modal" data-bs-target="#addCollection">
-              <mat-icon>add</mat-icon>
-            </a>
-          </mat-form-field>
-  
-        </div>
-        <div class="col-md-6">
-          <mat-form-field appearance="fill">
-            <input matInput placeholder="select format" >
-            <mat-select [formControl]="editorCtrl" multiple>
-              <mat-select-trigger>
-                {{editorCtrl.value?.[0] || ''}}
-                <span *ngIf="(editorCtrl.value?.length || 0) > 1" class="example-additional-selection">
-                  (+{{(editorCtrl.value?.length || 0) - 1}} {{editorCtrl.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let editor of editors" [value]="editor.edt_name">{{editor.edt_name}}</mat-option>
-            </mat-select>
-            <a mat-icon-button matSuffix data-bs-toggle="modal" data-bs-target="#addEditor">
-              <mat-icon>add</mat-icon>
-            </a>
-          </mat-form-field>
-  
-        </div>
-        <div class="col-md-6">
-          <mat-form-field appearance="fill">
-            <input matInput placeholder="select category" >
-            <mat-select [formControl]="editorCtrl" multiple>
-              <mat-select-trigger>
-                {{editorCtrl.value?.[0] || ''}}
-                <span *ngIf="(editorCtrl.value?.length || 0) > 1" class="example-additional-selection">
-                  (+{{(editorCtrl.value?.length || 0) - 1}} {{editorCtrl.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let editor of editors" [value]="editor.edt_name">{{editor.edt_name}}</mat-option>
-            </mat-select>
-            <a mat-icon-button matSuffix data-bs-toggle="modal" data-bs-target="#addEditor">
-              <mat-icon>add</mat-icon>
-            </a>
-          </mat-form-field>
-  
-        </div>
-        <div class="col-md-6">
-          <mat-form-field appearance="fill">
-            <input matInput placeholder="select Status" >
-            <mat-select [formControl]="editorCtrl" multiple>
-              <mat-select-trigger>
-                {{editorCtrl.value?.[0] || ''}}
-                <span *ngIf="(editorCtrl.value?.length || 0) > 1" class="example-additional-selection">
-                  (+{{(editorCtrl.value?.length || 0) - 1}} {{editorCtrl.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let editor of editors" [value]="editor.edt_name">{{editor.edt_name}}</mat-option>
-            </mat-select>
-            <a mat-icon-button matSuffix data-bs-toggle="modal" data-bs-target="#addEditor">
-              <mat-icon>add</mat-icon>
-            </a>
-          </mat-form-field>
-  
-        </div>
-        <div class="col-md-6">
-          <mat-form-field appearance="fill">
-            <input matInput placeholder="select language" >
-            <mat-select [formControl]="editorCtrl" multiple>
-              <mat-select-trigger>
-                {{editorCtrl.value?.[0] || ''}}
-                <span *ngIf="(editorCtrl.value?.length || 0) > 1" class="example-additional-selection">
-                  (+{{(editorCtrl.value?.length || 0) - 1}} {{editorCtrl.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let editor of editors" [value]="editor.edt_name">{{editor.edt_name}}</mat-option>
-            </mat-select>
-            <a mat-icon-button matSuffix data-bs-toggle="modal" data-bs-target="#addEditor">
-              <mat-icon>add</mat-icon>
-            </a>
-          </mat-form-field>
-  
-        </div>
-        <div class="col-md-6">
-          <mat-form-field appearance="fill">
-            <input matInput placeholder="select country" >
-            <mat-select [formControl]="editorCtrl" multiple>
-              <mat-select-trigger>
-                {{editorCtrl.value?.[0] || ''}}
-                <span *ngIf="(editorCtrl.value?.length || 0) > 1" class="example-additional-selection">
-                  (+{{(editorCtrl.value?.length || 0) - 1}} {{editorCtrl.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let editor of editors" [value]="editor.edt_name">{{editor.edt_name}}</mat-option>
-            </mat-select>
-            <a mat-icon-button matSuffix data-bs-toggle="modal" data-bs-target="#addEditor">
-              <mat-icon>add</mat-icon>
-            </a>
-          </mat-form-field>
-  
-        </div>
-        <div class="col-md-6">
-          <mat-form-field appearance="fill">
-            <input matInput placeholder="select authors" >
-            <mat-select [formControl]="editorCtrl" multiple>
-              <mat-select-trigger>
-                {{editorCtrl.value?.[0] || ''}}
-                <span *ngIf="(editorCtrl.value?.length || 0) > 1" class="example-additional-selection">
-                  (+{{(editorCtrl.value?.length || 0) - 1}} {{editorCtrl.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let editor of editors" [value]="editor.edt_name">{{editor.edt_name}}</mat-option>
-            </mat-select>
-            <a mat-icon-button matSuffix data-bs-toggle="modal" data-bs-target="#addEditor">
-              <mat-icon>add</mat-icon>
-            </a>
-          </mat-form-field>
-  
-        </div>
-        <div class="col-md-6">
-          <mat-form-field appearance="fill">
-            <input matInput placeholder="select editor" >
-            <mat-select [formControl]="editorCtrl" multiple>
-              <mat-select-trigger>
-                {{editorCtrl.value?.[0] || ''}}
-                <span *ngIf="(editorCtrl.value?.length || 0) > 1" class="example-additional-selection">
-                  (+{{(editorCtrl.value?.length || 0) - 1}} {{editorCtrl.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let editor of editors" [value]="editor.edt_name">{{editor.edt_name}}</mat-option>
-            </mat-select>
-            <a mat-icon-button matSuffix data-bs-toggle="modal" data-bs-target="#addEditor">
-              <mat-icon>add</mat-icon>
-            </a>
-          </mat-form-field>
-  
-        </div>
-        
-        
-  
-         
-      </div>
-      
-  
-  
-  
-       <!-- <button mat-raised-button class="mat-primary" type="submit" (click)="saveBook(addBookForm)" [disabled]="!addBookForm.valid">Save</button> 
-       -->
-       <button *ngIf="isUpdateActive" (click)="update()" mat-raised-button color="accent"> Update </button> 
-       <button *ngIf="!isUpdateActive" (click)="submit()" mat-raised-button color="accent"> Submit </button>
-       
-       <button mat-raised-button  (click)="clearForm()"> Clear </button>
-       
-      </form>
-    </div>
-    
-  
-  <!-- Editor Modal -->
-  <div class="modal fade" id="addEditor" tabindex="-1" aria-labelledby="editorModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="editorModalLabel">Add Editor</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-              <form [formGroup]="registrationForm"  >
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter name</mat-label>
-                      <input formControlName="edt_name" required matInput placeholder="name">
-                      
-                    </mat-form-field>
-          
-                  </div>
-                  
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter adresse</mat-label>
-                      <input formControlName="edt_adresse" required matInput placeholder="adresse">
-                      
-                    </mat-form-field>
-          
-                  </div>
-                  
-                  <div class="col-md-6">
-                    <mat-form-field  appearance="fill">
-                      <mat-label>Enter book phone </mat-label>
-                      <input formControlName="edt_phone" matInput placeholder="phone">
-                      
-                    </mat-form-field>
-          
-                  </div>
-          
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter fax  </mat-label>
-                      <input formControlName="edt_fax" matInput placeholder="fax">
-                      
-                    </mat-form-field>
-          
-                  </div>
-          
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter email </mat-label>
-                      <input formControlName="edt_email" matInput placeholder="email">
-                      
-                    </mat-form-field>
-          
-                  </div>
-            
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter url </mat-label>
-                      <input formControlName="edt_url" matInput placeholder="url">
-                      
-                    </mat-form-field>
-          
-                  </div>
-          
-                  
-                   
-                   
-                </div>
-                 
-                 
-                </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-warning"  data-bs-dismiss="modal">Close</button>
-          
-          <button (click)="update()" type="button" class="btn btn-primary"> Add </button>  
-          <!--<button *ngIf="!isUpdateActive" (click)="submit()" type="button" class="btn btn-primary"> Submit </button>
-          -->
-        </div>
-      </div>
-    </div>
-  </div> 
-  <!-- -------------------------------------------------------------------------------- -->
-  <!-- subCollection Modal -->
-  <div class="modal fade" id="addsubCollection" tabindex="-1" aria-labelledby="subCollectionModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="subCollectionModalLabel">Add subCollection </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-              <form [formGroup]="registrationForm"  >
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter ISSN </mat-label>
-                      <input formControlName="scol_issn" matInput placeholder="issn">
-                      
-                    </mat-form-field>
-          
-                  </div>
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter title</mat-label>
-                      <input formControlName="scol_title" required matInput placeholder="title">
-                      
-                    </mat-form-field>
-          
-                  </div>
-                  
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter parallel title </mat-label>
-                      <input formControlName="scol_parallelTitle" required matInput placeholder="parallel title">
-                      
-                    </mat-form-field>
-          
-                  </div>
-                  
-                  <div class="col-md-6">
-                    <mat-form-field  appearance="fill">
-                      <mat-label>Enter complementary title </mat-label>
-                      <input formControlName="scol_complementaryTitle" matInput placeholder="complementary title">
-                      
-                    </mat-form-field>
-          
-                  </div>
-          
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter responsability  </mat-label>
-                      <input formControlName="scol_responsability" matInput placeholder="responsability">
-                      
-                    </mat-form-field>
-          
-                  </div>
-          
-            
-                </div>
-                 
-                 
-                </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-warning"  data-bs-dismiss="modal">Close</button>
-          
-          <button (click)="update()" type="button" class="btn btn-primary"> Add </button>  
-          <!--<button *ngIf="!isUpdateActive" (click)="submit()" type="button" class="btn btn-primary"> Submit </button>
-          -->
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- -------------------------------------------------------------------------------- -->
-  <!-- Collection Modal -->
-  <div class="modal fade" id="addCollection" tabindex="-1" aria-labelledby="collectionModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="collectionModalLabel">Add subCollection </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-              <form [formGroup]="registrationForm"  >
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter ISSN </mat-label>
-                      <input formControlName="col_issn" matInput placeholder="issn">
-                      
-                    </mat-form-field>
-          
-                  </div>
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter title</mat-label>
-                      <input formControlName="col_title" required matInput placeholder="title">
-                      
-                    </mat-form-field>
-          
-                  </div>
-                  
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter parallel title </mat-label>
-                      <input formControlName="col_parallelTitle" required matInput placeholder="parallel title">
-                      
-                    </mat-form-field>
-          
-                  </div>
-                  
-                  <div class="col-md-6">
-                    <mat-form-field  appearance="fill">
-                      <mat-label>Enter complementary title </mat-label>
-                      <input formControlName="col_complementaryTitle" matInput placeholder="complementary title">
-                      
-                    </mat-form-field>
-          
-                  </div>
-          
-                  <div class="col-md-6">
-                    <mat-form-field appearance="fill">
-                      <mat-label>Enter responsability  </mat-label>
-                      <input formControlName="col_responsability" matInput placeholder="responsability">
-                      
-                    </mat-form-field>
-          
-                  </div>
-          
-            
-                </div>
-                 
-                 
-                </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-warning"  data-bs-dismiss="modal">Close</button>
-          
-          <button (click)="update()" type="button" class="btn btn-primary"> Add </button>  
-          <!--<button *ngIf="!isUpdateActive" (click)="submit()" type="button" class="btn btn-primary"> Submit </button>
-          -->
-        </div>
-      </div>
-    </div>
-  </div> 
  
-    
-    
+<div class="registration-form m-3 p-4">
+  <form [formGroup]="registrationForm">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter ID</mat-label>
+          <input formControlName="doc_id" required matInput placeholder="ID">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter ISBN</mat-label>
+          <input formControlName="bk_isbn" required matInput placeholder="ISBN">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter Title</mat-label>
+          <input formControlName="doc_title" required matInput placeholder="Title">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter book edition</mat-label>
+          <input formControlName="bk_edition" matInput placeholder="Book Edition">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter complementary title</mat-label>
+          <input formControlName="doc_complementaryTitle" matInput placeholder="Complementary Title">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter parallel title</mat-label>
+          <input formControlName="doc_parallelTitle" matInput placeholder="Parallel Title">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter set title</mat-label>
+          <input formControlName="doc_setTitle" matInput placeholder="Set Title">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter part number</mat-label>
+          <input formControlName="doc_partNumber" matInput placeholder="Part Number">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter year</mat-label>
+          <input formControlName="doc_year" matInput placeholder="Year">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter number of copies</mat-label>
+          <input formControlName="doc_nbr_copies" matInput placeholder="Number of Copies">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter keywords</mat-label>
+          <input formControlName="doc_keywords" matInput placeholder="Keywords">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter illustration</mat-label>
+          <input formControlName="doc_illustration" matInput placeholder="Illustration">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter number of pages</mat-label>
+          <input formControlName="doc_nbr_pages" matInput placeholder="Number of Pages">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter material</mat-label>
+          <input formControlName="doc_material" matInput placeholder="Material">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter length</mat-label>
+          <input formControlName="doc_length" matInput placeholder="Length">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter abstract</mat-label>
+          <input formControlName="doc_abstract" matInput placeholder="Abstract">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter notes</mat-label>
+          <input formControlName="doc_notes" matInput placeholder="Notes">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Select a sub collection</mat-label>
+          <mat-select formControlName="subCollectionTitle">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let scollc of scollections" [value]="scollc.scol_title">{{ scollc.scol_title }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <button *ngIf="!isUpdateActive" (click)="submit()" mat-raised-button [style.color]="'#fff'" [style.background-color]="'#6a17a6'">Submit</button>
+      <label class="file-upload-button">
+        <input type="file" accept=".txt" (change)="onFileSelected($event)">
+        <span class="button-text">Import from a file</span>
+      </label>
+      <button (click)="uploadFile()">Upload</button>
+      <button mat-raised-button (click)="clearForm()">Clear</button>
+    </div>
+  </form>
+</div> 

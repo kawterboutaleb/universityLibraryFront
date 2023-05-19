@@ -40,3 +40,10 @@
     border: none;
     padding: 0px 0px 0px 0px;
   }
+
+  .mat-column-doc_id{
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
+  }

@@ -24,15 +24,17 @@ export class Book{
     doc_length!: number;
     doc_abstract!: string;
     doc_notes!: string;
-    subCollection!: SubCollection;
-    collection!: Collection;
-    documentFormat!: DocFormat;
-    documentCategory!: DocCategory;
-    documentStatus!: DocStatus;
-    language!: string;
-    country!: string;
-    documentAuthors!: Author;
-    editors!: Editor;
+    subCollectionTitle!: string;
+    //subCollection!: string;
+    //subCollection = new SubCollection();
+    //subCollection!: SubCollection;
+    //collection!: Collection;
+    //documentFormat!: DocFormat;
+    //documentCategory!: DocCategory;
+    //language!: string;
+    //country!: string;
+    //editors!: Editor;
+    
 
 
 }
