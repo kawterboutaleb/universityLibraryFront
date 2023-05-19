@@ -36,8 +36,16 @@ import { DocUpdateComponent } from './document/doc-update/doc-update.component';
 import { DocCatalogComponent } from './document/doc-catalog/doc-catalog.component';
 import { ThesisComponent } from './thesis/thesis.component';
 import { ThesisCatalogComponent } from './thesis/thesis-catalog/thesis-catalog.component';
+
 import { ThesisAddComponent } from './thesis/thesis-add/thesis-add.component';
 import { ThesisUpdateComponent } from './thesis/thesis-update/thesis-update.component';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatChipsModule } from '@angular/material/chips';
+import { CommonModule } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+
+
+
 
 @NgModule({
   declarations: [
@@ -61,7 +69,8 @@ import { ThesisUpdateComponent } from './thesis/thesis-update/thesis-update.comp
     ThesisComponent,
     ThesisCatalogComponent,
     ThesisAddComponent,
-    ThesisUpdateComponent
+    ThesisUpdateComponent,
+    
       ],
   imports: [
     BrowserModule,
@@ -82,11 +91,15 @@ import { ThesisUpdateComponent } from './thesis/thesis-update/thesis-update.comp
     MatButtonModule,
     MatNativeDateModule,
     MatDatepickerModule,
-
-    MatSelectModule
-
+    MatSelectModule, 
+    CommonModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatTreeModule
     ],
   providers: [
+
+   
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {
       ...new MatDialogConfig(),
        hasBackdrop: true,
@@ -94,6 +107,7 @@ import { ThesisUpdateComponent } from './thesis/thesis-update/thesis-update.comp
        disableClose: true
     } as MatDialogConfig,
     }
+    
   ],
   bootstrap: [AppComponent],
   entryComponents: [DeleteDialogComponent, DetailDialogComponent]

@@ -3,7 +3,22 @@ import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Params , Router} from '@angular/router';
 import { Book } from 'src/app/models/book.model';
 import { Category } from 'src/app/models/category.model';
+import { Editor } from 'src/app/models/editor.model';
 import { BookService } from 'src/app/services/book.service';
+
+import { CollectionService } from 'src/app/services/collection.service';
+import { DeleteDialogComponent } from 'src/app/dialog/delete-dialog/delete-dialog.component';
+import { DialogService } from 'src/app/services/dialog.service';
+import { map, startWith } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+
+import { SubCollection } from 'src/app/models/subCollection.model';
+import { SubCollectionService } from 'src/app/services/subCollection.service';
+
+
+
+
 
 //import { NgToastService } from 'ng-angular-popup';
 
@@ -15,16 +30,20 @@ import { BookService } from 'src/app/services/book.service';
 })
 export class BookAddComponent implements OnInit {
   book:Book=new Book();
-  titleSaveOrUpdate:string="Add";
+  //titleSaveOrUpdate:string="Add";
   id:number;
-  
-  categories:Category[];
+  selectedEditors: string[] = [];
+  editors : Editor[];
+ 
+  scollections : SubCollection[];
   private bookIdToUpdate!: number;
-  public isUpdateActive: boolean = false;
-
-
-  constructor(private  fb: FormBuilder, private bookService:BookService ,private route:ActivatedRoute , private router: Router) { 
-
+  public isUpdateActive: boolean = false; 
+  filteredSuggestions: Observable<string[]>;
+  myControl = new FormControl();
+  editorCtrl = new FormControl();
+  selected = [];
+  
+  constructor(private dialogService:DialogService ,private  fb: FormBuilder, private bookService:BookService, private collcService:CollectionService, private scollcService:SubCollectionService ,private route:ActivatedRoute , private router: Router) { 
   }
   registrationForm!: FormGroup;
 
@@ -45,7 +64,8 @@ export class BookAddComponent implements OnInit {
       doc_material: [''],
       doc_length: [''],
       doc_abstract: [''],
-      doc_notes: ['']
+      doc_notes: [''],
+      collectionns : ['']
     });
     this.route.params.subscribe(val => {
       this.bookIdToUpdate = val['doc_id'];
@@ -62,9 +82,36 @@ export class BookAddComponent implements OnInit {
           })
       }
     })
-    
+    //load editors
+    this.bookService.getAllEditors().subscribe(editors=>{
+      this.editors=editors;
+     });
 
     
+
+    //load sub collections
+    this.scollcService.getAllSubCollections().subscribe(scollc=>{
+      this.scollections=scollc;
+     });
+
+      this.filteredSuggestions = this.myControl.valueChanges.pipe(
+    startWith(''), // Start with an empty string
+    map(value => this.filterSuggestions(value)) // Map the input value to the filtered suggestions
+  );
+     
+  }
+  
+  filterSuggestions(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.editors.filter(editor => editor.edt_name.toLowerCase().includes(filterValue))
+                       .map(editor => editor.edt_name);
+  }
+
+  deleteEditor(id: number) {
+    this.bookService.deleteEditor(id).subscribe(
+      () => console.log(`Editor with ID ${id} deleted successfully.`),
+      error => console.error(error)
+    );
   }
   submit() {
     
@@ -73,6 +120,9 @@ export class BookAddComponent implements OnInit {
 
         this.registrationForm.reset();
       });
+  }
+  public redirectToDelate (edt_id: number) {
+    this.bookService.deleteEditor(edt_id);
   }
   fillFormToUpdate(book: Book) {
     this.registrationForm.setValue({
@@ -93,8 +143,8 @@ export class BookAddComponent implements OnInit {
       doc_abstract: book.doc_abstract,
       doc_notes: book.doc_notes
     })
+   
   }
-
   update() {
     this.bookService.updateBook(this.registrationForm.value, this.bookIdToUpdate)
       .subscribe(res => {
@@ -106,84 +156,6 @@ export class BookAddComponent implements OnInit {
     this.registrationForm.reset();
   }
   
-  
-
-  /*
-  ngOnInit(): void {
-    this.route.params.subscribe((params:Params)=>{
-      this.id=params['doc_id'];
-    });
-    
-    if(this.id==undefined){//add new book
-      const formAddValues=JSON.parse(sessionStorage.getItem('formAddValues'));
-      if(formAddValues){
-        this.book.doc_id=formAddValues.doc_id;
-      }
-    }else{//update existing book
-      this.bookService.getBook(this.id).subscribe(
-        result=>{ 
-          if(result && result!=null){
-          this.book=result;
-          return;
-          }
-          console.log("no result");
-        }
-      );
-    }
-    //load categories
-    
-     this.bookService.loadCategories().subscribe(categories=>{
-      this.categories=categories;
-     });
-    
   }
-  
-
-  ngOnDestroy(){
-    sessionStorage.setItem('formAddValues', JSON.stringify({
-      isbn: this.book.doc_id}));
-  }
-  clearForm(addBookForm: NgForm){
-    addBookForm.form.reset(); 
-}
-*/
-
-/*
-saveBook(addBookForm: NgForm){
-  this.bookService.saveBook(this.book).subscribe(
-    (book) => {
-      // Handle successful response from service
-      console.log("Book saved successfully!");
-      addBookForm.form.reset(); 
-    },
-    (error) => {
-      // Handle error response from service
-      console.log("An error occurred while saving the book:", error);
-    }
-  );
-}
-
-saveBook(addBookForm: NgForm){
-  this.bookService.saveBook(this.book).subscribe(book=>{
-    
-  });
-  addBookForm.form.reset(); 
 
 
-  
-}
-
-/*
-  setLocalDateToDatePicker(book: Book){
-    var localDate = new Date(book.releaseDate);
-    if(localDate.getTimezoneOffset() < 0){
-        localDate.setMinutes(localDate.getMinutes() - localDate.getTimezoneOffset() );
-    }else{
-      localDate.setMinutes(localDate.getMinutes() + localDate.getTimezoneOffset() );
-    }
-    book.releaseDate = localDate;
-} */
-
-
-
-}

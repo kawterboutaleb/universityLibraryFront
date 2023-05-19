@@ -5,14 +5,14 @@ import { DialogPosition, MatDialog, MatDialogConfig } from '@angular/material/di
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
 import { DeleteDialogComponent } from 'src/app/dialog/delete-dialog/delete-dialog.component';
 import { DialogService } from 'src/app/services/dialog.service';
 import { TabService } from 'src/app/services/tab.service';
 import { Book } from '../../models/book.model';
 import { BookService } from '../../services/book.service';
-import { FormGroup, FormControl } from '@angular/forms';
-
+import { FormGroup, FormControl,FormBuilder,Validators  } from '@angular/forms';
+import { ActivatedRoute, Params , Router} from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-book-catlog',
@@ -22,23 +22,68 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class BookCatlogComponent implements OnInit {
 
   clickedRows = new Set<Book>();
-  displayedColumns: string[] = ['select','doc_id', 'bk_isbn', 'doc_title', 'bk_edition', 'doc_complementaryTitle', 'doc_parallelTitle', 'doc_setTitle',
-   'doc_partNumber', 'doc_year', 'doc_nbr_copies','doc_keywords','doc_illustration','doc_nbr_pages','doc_material','doc_length','doc_abstract','doc_notes','details', 'update', 'delete'];
+  /* displayedColumns: string[] = ['select','doc_id', 'bk_isbn', 'doc_title', 'bk_edition', 'doc_complementaryTitle', 'doc_parallelTitle', 'doc_setTitle',
+   'doc_partNumber', 'doc_year', 'doc_nbr_copies','doc_keywords','doc_illustration','doc_nbr_pages','doc_material','doc_length','doc_abstract','doc_notes','details', 'update', 'delete']; */
+  
+  displayedColumns: string[] = ['select','doc_id', 'bk_isbn', 'doc_title', 'bk_edition',
+   'doc_year','details', 'update', 'delete'];
   booksList: Book[] = [];
   dataSource: MatTableDataSource<Book> = new MatTableDataSource<Book>(this.booksList);
-
+  updateForm: FormGroup;
 column:string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
+  book:Book=new Book();
+  id:number;
+  registrationForm!: FormGroup;
+  private bookIdToUpdate!: number;
+  private _dialog: any;
 
-
-  constructor(private dialogService:DialogService , private bookService: BookService, private tabService:TabService, private router:Router, private activeRoute:ActivatedRoute) { }
+  constructor(private  fb: FormBuilder,private dialogService:DialogService , private bookService: BookService, private tabService:TabService, private router:Router, private activeRoute:ActivatedRoute ,private modalService: NgbModal) { 
+    
+    this.updateForm = this.fb.group({
+      bk_isbn: ['', Validators.required],
+      doc_title: ['', Validators.required],
+      bk_edition: ['', Validators.required],
+      doc_complementaryTitle: ['', Validators.required],
+      doc_parallelTitle: ['', Validators.required],
+      doc_setTitle: ['', Validators.required],
+      doc_partNumber: ['', Validators.required],
+      doc_year: ['', Validators.required],
+      doc_nbr_copies: ['', Validators.required],
+      doc_keywords: ['', Validators.required],
+      doc_illustration: ['', Validators.required],
+      doc_nbr_pages: ['', Validators.required],
+      doc_material: ['', Validators.required],
+      doc_length: ['', Validators.required],
+      doc_abstract: ['', Validators.required],
+      doc_notes: ['', Validators.required],
+    });
+  }
 
 
 
   ngOnInit(): void {
+
+    this.activeRoute.params.subscribe((params:Params)=>{
+      this.id=params['doc_id'];
+    });
+  
+    if(this.id==undefined){ // add new book
+      // ...
+    } else { // update existing book
+      this.bookService.getBook(this.id).subscribe(result => { 
+        if (result && result!=null){
+          this.book=result;
+          this.fillFormToUpdate(this.book);
+          this.bookIdToUpdate = this.id; // set the bookIdToUpdate
+          return;
+        }
+        console.log("no result");
+      });
+    }
 
     this.bookService.getAllBooks().subscribe(
       books => {
@@ -54,8 +99,43 @@ column:string;
         alert(error.message);
       });
     
+      
 
+  }
 
+  
+
+  fillFormToUpdate(book: Book) {
+    this.registrationForm.setValue({
+      bk_isbn: book.bk_isbn,
+      doc_title: book.doc_title,
+      bk_edition: book.bk_edition,
+      doc_complementaryTitle: book.doc_complementaryTitle,
+      doc_parallelTitle: book.doc_parallelTitle,
+      doc_setTitle: book.doc_setTitle,
+      doc_partNumber: book.doc_partNumber,
+      doc_year: book.doc_year,
+      doc_nbr_copies: book.doc_nbr_copies,
+      doc_keywords: book.doc_keywords,
+      doc_illustration: book.doc_illustration,
+      doc_nbr_pages: book.doc_nbr_pages,
+      doc_material: book.doc_material,
+      doc_length: book.doc_length,
+      doc_abstract: book.doc_abstract,
+      doc_notes: book.doc_notes
+    })
+  }
+
+  selectedBook: Book; // Define a property to store the selected book
+
+  openModal(book: Book) {
+  this.selectedBook = book; // Store the selected book data in the property
+  // Code to open the modal here
+ }
+
+  update() {
+    const updatedData = this.updateForm.value; // Get the updated form values
+    // Perform update operation using the updatedData object
   }
 
   ngAfterViewInit(): void {
@@ -80,10 +160,6 @@ column:string;
   }
 
 
-  /*public doFilter = (event: Event) => {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
-  }*/
 
   applyFilter(event: Event, column: string){
     this.column=column;

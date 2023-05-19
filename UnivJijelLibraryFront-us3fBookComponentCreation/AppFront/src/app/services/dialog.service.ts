@@ -41,9 +41,9 @@ export class DialogService {
     const dialogConfig : MatDialogConfig = {};
 
     dialogConfig.data={
-      id : book.doc_id,
-      title: book.doc_title,
-      isbn: book.bk_isbn
+      doc_id : book.doc_id,
+      doc_title: book.doc_title,
+      bk_isbn: book.bk_isbn
     }
     this.dialog.open(DetailDialogComponent, dialogConfig);
 
