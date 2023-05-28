@@ -24,6 +24,10 @@ export class BookService {
    public saveBook(book:Book){
       return this.http.post<Book>('http://localhost:8060/api/book/add', book);
    }
+   
+   uploadFile(formData: FormData) {
+    return this.http.post('http://localhost:8060/api/book/upload', formData);
+  }
 
    public getBook(ID:number):Observable<Book>{
     return this.http.get<Book>(`http://localhost:8060/api/book/book/${ID}`);

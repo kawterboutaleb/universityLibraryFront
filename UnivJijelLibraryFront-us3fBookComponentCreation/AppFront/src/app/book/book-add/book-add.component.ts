@@ -1,24 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Params , Router} from '@angular/router';
 import { Book } from 'src/app/models/book.model';
-import { Category } from 'src/app/models/category.model';
 import { Editor } from 'src/app/models/editor.model';
 import { BookService } from 'src/app/services/book.service';
 
 import { CollectionService } from 'src/app/services/collection.service';
-import { DeleteDialogComponent } from 'src/app/dialog/delete-dialog/delete-dialog.component';
-import { DialogService } from 'src/app/services/dialog.service';
 import { map, startWith } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-
+import { Collection } from 'src/app/models/collection.model';
 import { SubCollection } from 'src/app/models/subCollection.model';
 import { SubCollectionService } from 'src/app/services/subCollection.service';
-
-
-
-
+import { HttpClient } from '@angular/common/http';
 
 //import { NgToastService } from 'ng-angular-popup';
 
@@ -28,29 +22,67 @@ import { SubCollectionService } from 'src/app/services/subCollection.service';
   templateUrl: './book-add.component.html',
   styleUrls: ['./book-add.component.css']
 })
+
+
 export class BookAddComponent implements OnInit {
   book:Book=new Book();
-  //titleSaveOrUpdate:string="Add";
-  id:number;
-  selectedEditors: string[] = [];
+  selectedFile: File | null = null;
   editors : Editor[];
- 
+  collections : Collection[] ;
+
   scollections : SubCollection[];
   private bookIdToUpdate!: number;
-  public isUpdateActive: boolean = false; 
-  filteredSuggestions: Observable<string[]>;
-  myControl = new FormControl();
-  editorCtrl = new FormControl();
-  selected = [];
+  public isUpdateActive: boolean = false;
+  myControl = new FormControl('');
+  formControls: any;
+  doc_id:number;
+  subCollectionControl = new FormControl();
+  filteredSubCollections: Observable<SubCollection[]>;
+  //subCollections: SubCollection[] = []; 
+
+  //subCollections: SubCollection[] = [{scol_id : null, scol_title:"",scol_parallelTitle:"",scol_complementaryTitle:"",scol_responsability:"",scol_issn:""}]; 
+
   
-  constructor(private dialogService:DialogService ,private  fb: FormBuilder, private bookService:BookService, private collcService:CollectionService, private scollcService:SubCollectionService ,private route:ActivatedRoute , private router: Router) { 
+  constructor(private dialogService:DialogService ,private http: HttpClient ,private  fb: FormBuilder, private bookService:BookService, private collcService:CollectionService, private scollcService:SubCollectionService ,private route:ActivatedRoute , private router: Router) { 
+    this.filteredSubCollections = this.subCollectionControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this.filterSubCollections(value))
+    );
+  }
+
+  filterSubCollections(value: string): SubCollection[] {
+    const filterValue = value;
+    return this.scollections.filter(subCollection => subCollection.scol_title.includes(filterValue));
   }
   registrationForm!: FormGroup;
 
   ngOnInit(): void {
+    /*
+    this.route.params.subscribe((params:Params)=>{
+      this.doc_id=params['doc_id'];
+    });
+    
+    if(this.doc_id==undefined){//add new book
+      const formAddValues=JSON.parse(sessionStorage.getItem('formAddValues'));
+      if(formAddValues){
+        this.book.doc_id=formAddValues.doc_id;
+      }
+    }else{//update existing book
+      this.bookService.getBook(this.doc_id).subscribe(
+        result=>{ 
+          if(result && result!=null){
+          this.book=result;
+          return;
+          }
+          console.log("no result");
+        }
+      );
+    } */
+    
     this.registrationForm = this.fb.group({
-      bk_isbn: [''],
-      doc_title: [''],
+      doc_id:['',Validators.required],
+      bk_isbn: ['',Validators.required],
+      doc_title: ['',Validators.required],
       bk_edition: [''],
       doc_complementaryTitle: [''],
       doc_parallelTitle: [''],
@@ -65,8 +97,13 @@ export class BookAddComponent implements OnInit {
       doc_length: [''],
       doc_abstract: [''],
       doc_notes: [''],
-      collectionns : ['']
-    });
+      subCollectionTitle: ['']
+      //subCollection: [null, Validators.required]
+      //subCollection: new SubCollection()
+    }); 
+     
+  
+    /*
     this.route.params.subscribe(val => {
       this.bookIdToUpdate = val['doc_id'];
       if (this.bookIdToUpdate) {
@@ -81,31 +118,45 @@ export class BookAddComponent implements OnInit {
             }
           })
       }
-    })
+    }) */
+    
     //load editors
     this.bookService.getAllEditors().subscribe(editors=>{
       this.editors=editors;
      });
 
-    
-
-    //load sub collections
-    this.scollcService.getAllSubCollections().subscribe(scollc=>{
-      this.scollections=scollc;
+    //load collections
+    this.collcService.getAllCollections().subscribe(collc=>{
+      this.collections=collc;
      });
 
-      this.filteredSuggestions = this.myControl.valueChanges.pipe(
-    startWith(''), // Start with an empty string
-    map(value => this.filterSuggestions(value)) // Map the input value to the filtered suggestions
-  );
+    //load sub collections
+    this.scollcService.getAllSubCollections().subscribe(scollections =>{
+      //this.scollections.push.apply(this.scollections,result);
+      this.scollections=scollections;
+     });
      
+    
   }
   
-  filterSuggestions(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.editors.filter(editor => editor.edt_name.toLowerCase().includes(filterValue))
-                       .map(editor => editor.edt_name);
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0] as File;
   }
+  
+  uploadFile() {
+    const formData = new FormData();
+    formData.append('file', this.selectedFile as File);
+
+    this.bookService.uploadFile( formData)
+      .subscribe(
+        (response) => {
+          console.log('File uploaded successfully');
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+        }
+      );
+  } 
 
   deleteEditor(id: number) {
     this.bookService.deleteEditor(id).subscribe(
@@ -113,17 +164,29 @@ export class BookAddComponent implements OnInit {
       error => console.error(error)
     );
   }
+  
   submit() {
+    console.log(this.registrationForm.value)
     
     this.bookService.saveBook(this.registrationForm.value)
       .subscribe(res => {
 
         this.registrationForm.reset();
-      });
+      });  
+  
+    
+  } /*
+  saveBook(addBookForm: NgForm){
+    this.bookService.saveBook(this.book).subscribe(book=>{
+    });
+    addBookForm.form.reset(); 
+    
   }
+ */
   public redirectToDelate (edt_id: number) {
     this.bookService.deleteEditor(edt_id);
   }
+  /*
   fillFormToUpdate(book: Book) {
     this.registrationForm.setValue({
       bk_isbn: book.bk_isbn,
@@ -141,21 +204,24 @@ export class BookAddComponent implements OnInit {
       doc_material: book.doc_material,
       doc_length: book.doc_length,
       doc_abstract: book.doc_abstract,
-      doc_notes: book.doc_notes
-    })
-   
-  }
+      doc_notes: book.doc_notes,
+      subCollection: {
+        scol_id: book.subCollection.scol_id
+      }
+    });
+  } 
   update() {
     this.bookService.updateBook(this.registrationForm.value, this.bookIdToUpdate)
       .subscribe(res => {
 
         this.registrationForm.reset();
       });
-  }
+  }  */
+  
   clearForm(){
     this.registrationForm.reset();
-  }
+}
   
-  }
+}
 
 

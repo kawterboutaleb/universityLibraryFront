@@ -37,15 +37,12 @@ import { DocCatalogComponent } from './document/doc-catalog/doc-catalog.componen
 import { ThesisComponent } from './thesis/thesis.component';
 import { ThesisCatalogComponent } from './thesis/thesis-catalog/thesis-catalog.component';
 
-import { ThesisAddComponent } from './thesis/thesis-add/thesis-add.component';
-import { ThesisUpdateComponent } from './thesis/thesis-update/thesis-update.component';
-import { MatTreeModule } from '@angular/material/tree';
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
-
-
+import { ThesisAddComponent } from './thesis/thesis-add/thesis-add.component';
+import { ThesisUpdateComponent } from './thesis/thesis-update/thesis-update.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +92,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     CommonModule,
     MatChipsModule,
     MatAutocompleteModule,
-    MatTreeModule
+    MatSelectModule
+
     ],
   providers: [
 
