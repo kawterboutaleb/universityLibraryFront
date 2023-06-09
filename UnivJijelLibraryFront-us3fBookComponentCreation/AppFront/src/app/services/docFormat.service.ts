@@ -9,7 +9,7 @@ import { DocFormat } from '../models/docFormat.model';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthorService {
+export class DocFormatService {
 
   constructor(private http:HttpClient) {
    }

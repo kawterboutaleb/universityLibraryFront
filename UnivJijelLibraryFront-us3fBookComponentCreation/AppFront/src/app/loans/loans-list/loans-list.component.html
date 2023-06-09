@@ -1,0 +1,289 @@
+
+<div   class="book-header row bg-light  mb-2  mat-elevation-z3" >
+    <h2 class="me-5  col-auto m-0 " >Loans</h2>
+    <!-- <a   (click)="openTab('/book/add',null)" class="col-auto"><i class="bi bi-plus-lg fa-6x" style="color:#6a17a6; font-size:  2em;"></i></a>
+    
+    <div class="col-auto ms-auto me-0">
+      <mat-form-field >
+        <input matInput type="text" (keyup)="applyFilter($event,'bk_isbn')" placeholder="ISBN">
+      </mat-form-field>
+
+      <mat-form-field >
+        <input matInput type="text" (keyup)="applyFilter($event,'doc_title')" placeholder="Title">
+      </mat-form-field>
+
+      
+    </div> -->
+    
+
+</div>
+
+<div class="book-body  row mb-2 p-0 mat-elevation-z3 " >
+
+
+<table  mat-table [dataSource]="dataSource" matSort  matSortStart="desc">
+
+   
+    <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="lct_firstName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> lct_firstName </th>
+    <td mat-cell *matCellDef="let loan"> {{loan.lct_firstName}} </td>
+</ng-container>
+
+<ng-container matColumnDef="lct_lastName">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> lct_lastName </th>
+    <td mat-cell *matCellDef="let loan"> {{loan.lct_lastName}} </td>
+    </ng-container>
+
+  <ng-container matColumnDef="doc_title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> doc_title </th>
+      <td mat-cell *matCellDef="let loan"> {{loan.doc_title}} </td>
+  </ng-container>
+    <ng-container matColumnDef="loanBeginDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> loanBeginDate </th>
+      <td mat-cell *matCellDef="let loan"> {{ loan.loanBeginDate | date: 'yyyy-MM-dd' }} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="loanEndDate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> loanEndDate </th>
+      <td mat-cell *matCellDef="let loan"> {{ loan.loanEndDate | date: 'yyyy-MM-dd' }} </td>
+    </ng-container>
+
+
+      <ng-container matColumnDef="details">
+         <th mat-header-cell *matHeaderCellDef > Details </th>
+         <td mat-cell *matCellDef="let loan">
+          <a mat-icon-button color="primary" >
+            <mat-icon class="mat-18" style="color: #570f8a">reorder</mat-icon>
+          </a>
+          </td>
+      </ng-container>
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef> Update </th>
+        <td mat-cell *matCellDef="let loan">
+          <a mat-icon-button color="accent"  >
+              <mat-icon class="mat-18" style="color: rgb(123, 183, 5);">system_update</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Delete </th>
+            <td mat-cell *matCellDef="let loan">
+              <a mat-icon-button color="warn" >
+                  <mat-icon class="mat-18" style="color:red;">delete</mat-icon>
+              </a>
+            </td>
+          </ng-container>
+
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row
+      (click)="clickedRows.add(row)"
+      [class.demo-row-is-clicked]="clickedRows.has(row)"
+      *matRowDef="let row;columns:displayedColumns"> </tr>
+  </table>
+  <mat-paginator 
+  [pageSizeOptions]="[10, 30, 50]"
+  showFirstLastButtons
+  aria-label="Select page of periodic elements">
+    </mat-paginator>
+
+
+  <!-- Modal -->
+  
+
+  <!-- Modal 
+  <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">update book</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+              <form [formGroup]="updateForm"  >
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter ISBN</mat-label>
+                      <input formControlName="bk_isbn" required matInput placeholder="bk_isbn" >
+                      
+                    </mat-form-field>
+          
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter Title</mat-label>
+                      <input formControlName="doc_title" required matInput placeholder="doc_title" >
+                      
+                    </mat-form-field>
+          
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <mat-form-field  appearance="fill">
+                      <mat-label>Enter book edition </mat-label>
+                      <input formControlName="bk_edition" matInput placeholder="bk_edition" >
+                      
+                    </mat-form-field>
+          
+                  </div>
+          
+                  <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter complementary title </mat-label>
+                      <input formControlName="doc_complementaryTitle" matInput placeholder="doc_complementaryTitle" >
+                      
+                    </mat-form-field>
+          
+                  </div>
+          
+                  <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter parallel title </mat-label>
+                      <input formControlName="doc_parallelTitle" matInput placeholder="doc_parallelTitle" >
+                      
+                    </mat-form-field>
+          
+                  </div>
+            
+                  <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter set title </mat-label>
+                      <input formControlName="doc_setTitle" matInput placeholder="doc_setTitle">
+                      
+                    </mat-form-field>
+          
+                  </div>
+          
+                  <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter part number </mat-label>
+                      <input formControlName="doc_partNumber" matInput placeholder="doc_partNumber" >
+                      
+                     </mat-form-field>
+          
+                  </div>
+                   
+                  <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter year </mat-label>
+                      <input formControlName="doc_year" matInput placeholder="doc_year" >
+                      
+                     </mat-form-field>
+          
+                  </div>
+                   
+                  <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter number of copies </mat-label>
+                      <input formControlName="doc_nbr_copies" matInput placeholder="doc_nbr_copies" >
+                      
+                     </mat-form-field>
+          
+                  </div>
+                   
+                  <div class="col-md-6"> 
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter keywords</mat-label>
+                      <input formControlName="doc_keywords" matInput placeholder="doc_keywords" >
+                      
+                     </mat-form-field>
+          
+                  </div>
+          
+                  <div class="col-md-6"> 
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter illustration </mat-label>
+                      <input formControlName="doc_illustration" matInput placeholder="doc_illustration" >
+                     
+                     </mat-form-field>
+          
+                  </div>
+                  <div class="col-md-6"> 
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter number of pages</mat-label>
+                      <input formControlName="doc_nbr_pages" matInput placeholder="doc_nbr_pages" >
+                      
+                     </mat-form-field>
+          
+                  </div>
+                  
+                  <div class="col-md-6"> 
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter material </mat-label>
+                      <input formControlName="doc_material" matInput placeholder="doc_material" >
+                      
+                     </mat-form-field>
+          
+                  </div>
+                  <div class="col-md-6"> 
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter length </mat-label>
+                      <input formControlName="doc_length" matInput placeholder="doc_length" >
+                      
+                     </mat-form-field>
+          
+                  </div>
+                  <div class="col-md-6"> 
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter abstract </mat-label>
+                      <input formControlName="doc_abstract" matInput placeholder="doc_abstract" >
+                      
+                     </mat-form-field>
+          
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter notes </mat-label>
+                      <input formControlName="doc_notes" matInput placeholder="doc_notes">
+                      
+                     </mat-form-field>
+          
+                  </div>
+                   
+                   
+                   
+                </div>
+                 
+                 
+                </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="updateBook()">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>  -->
+
+</div>
+<!-- 
+<div *ngIf="!clickedRows.size">
+
+    Clicked rows will be logged here
+  </div>
+-->
+  
+
+  

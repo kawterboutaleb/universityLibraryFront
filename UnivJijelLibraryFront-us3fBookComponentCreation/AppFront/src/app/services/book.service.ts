@@ -45,9 +45,5 @@ export class BookService {
  public deleteEditor(ID:number):Observable<void>{
   return this.http.delete<void>(`http://localhost:8060/api/editor/delete/${ID}`);
  }
-   /*
-   loadCategories():Observable<Category[]>{
-
-    return this.http.get<Category[]>('http://localhost:8080/rest/category/api/allCategories');
-  } */
+   
 }

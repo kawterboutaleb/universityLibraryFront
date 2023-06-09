@@ -1,216 +1,315 @@
 
-    <!-- <div class="addUpdateThesisContainer container col-md-6 col-xl-4"> -->
         <div class="registration-form m-3 p-4">
-            <!-- <form #addThesisForm="ngForm"  > -->
-            <form [formGroup]="registrationForm"  >
+            <form [formGroup]="thesisRegistrationForm"  >
              <div class="row">
               
                
                <div class="col-md-6">
-                 <mat-form-field hintLabel="Max 100 characters" appearance="fill">
-                   <mat-label>Enter Title</mat-label>
-                   <input formControlName="doc_title" matInput placeholder="doc_title">
-                   <!-- <input matInput #titleInput maxlength="100" required [(ngModel)]="book.doc_title" name="title">
-                   <mat-hint align="end">{{titleInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter title</mat-label>
+                   <input formControlName="doc_title" matInput placeholder="thesis title" required>
                  </mat-form-field>
        
                </div>
                <div class="col-md-6">
-                <mat-form-field hintLabel="Max 100 characters" appearance="fill">
+                <mat-form-field appearance="fill">
                   <mat-label>Enter thesis defence Place</mat-label>
-                  <input formControlName="ts_defencePlace" matInput placeholder="ts_defencePlace">
-                  <!-- <input matInput #titleInput maxlength="100" required [(ngModel)]="book.doc_title" name="title">
-                  <mat-hint align="end">{{titleInput.value.length}}/10</mat-hint> -->
+                  <input formControlName="ts_defencePlace" matInput placeholder="thesis defence place">
+                  
                 </mat-form-field>
       
               </div>
 
               <div class="col-md-6">
-                <mat-form-field hintLabel="Max 100 characters" appearance="fill">
+                <mat-form-field appearance="fill">
                   <mat-label>Enter thesis url</mat-label>
-                  <input formControlName="ts_url" matInput placeholder="ts_url">
-                  <!-- <input matInput #titleInput maxlength="100" required [(ngModel)]="book.doc_title" name="title">
-                  <mat-hint align="end">{{titleInput.value.length}}/10</mat-hint> -->
+                  <input formControlName="ts_url" matInput placeholder="thesis url">
+                  
                 </mat-form-field>
       
               </div>
               
        
                <div class="col-md-6">
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter complementary title </mat-label>
-                   <input formControlName="doc_complementaryTitle" matInput placeholder="doc_complementaryTitle">
-                   <!-- <input matInput #complementaryTitleInput maxlength="10" required [(ngModel)]="book.doc_complementaryTitle" name="complementaryTitle" >
-                   <mat-hint align="end">{{complementaryTitleInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter thesis complementary title </mat-label>
+                   <input formControlName="doc_complementaryTitle" matInput placeholder="thesis complementary title">
+                   
                  </mat-form-field>
        
                </div>
        
                <div class="col-md-6">
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter parallel title </mat-label>
-                   <input formControlName="doc_parallelTitle" matInput placeholder="doc_parallelTitle">
-                   <!-- <input matInput #complementaryTitleInput maxlength="10" required [(ngModel)]="book.doc_complementaryTitle" name="complementaryTitle" >
-                   <mat-hint align="end">{{complementaryTitleInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter thesis parallel title </mat-label>
+                   <input formControlName="doc_parallelTitle" matInput placeholder="thesis parallel title">
+                   
                  </mat-form-field>
        
                </div>
          
                <div class="col-md-6">
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter set title </mat-label>
-                   <input formControlName="doc_setTitle" matInput placeholder="doc_setTitle">
-                   <!-- <input matInput #setTitleInput maxlength="10" required  [(ngModel)]="book.doc_setTitle"  name="setTitle" >
-                   <mat-hint align="end">{{setTitleInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter thesis set title </mat-label>
+                   <input formControlName="doc_setTitle" matInput placeholder="thesis set title">
+                   
                  </mat-form-field>
        
                </div>
-       
-               <div class="col-md-6">
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter part number </mat-label>
-                   <input formControlName="doc_partNumber" matInput placeholder="doc_partNumber">
-                   <!-- <input matInput #partNumberInput maxlength="10" required  [(ngModel)]="book.doc_partNumber"  name="partNumber" >
-                   <mat-hint align="end">{{partNumberInput.value.length}}/10</mat-hint> -->
-                  </mat-form-field>
-       
-               </div>
                 
                <div class="col-md-6">
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
+                 <mat-form-field appearance="fill">
                    <mat-label>Enter year </mat-label>
-                   <input formControlName="doc_year" matInput placeholder="doc_year">
-                   <!-- <input matInput #yearInput maxlength="10" required  [(ngModel)]="book.doc_year"  name="year" >
-                   <mat-hint align="end">{{yearInput.value.length}}/10</mat-hint> -->
+                   <input formControlName="doc_year" matInput placeholder="thesis year">
+                   
                   </mat-form-field>
        
                </div>
                 
                <div class="col-md-6">
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter number of copies </mat-label>
-                   <input formControlName="doc_nbr_copies" matInput placeholder="doc_nbr_copies">
-                   <!-- <input matInput #nbr_copiesInput maxlength="10" required  [(ngModel)]="book.doc_nbr_copies"  name="nbr_copies" >
-                   <mat-hint align="end">{{nbr_copiesInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter thesis's number of copies</mat-label>
+                   <input formControlName="doc_nbr_copies" matInput placeholder="thesis's number of copies">
+                   
                   </mat-form-field>
        
                </div>
                 
                <div class="col-md-6"> 
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter keywords</mat-label>
-                   <input formControlName="doc_keywords" matInput placeholder="doc_keywords">
-                   <!-- <input matInput #keywordsInput maxlength="10" required  [(ngModel)]="book.doc_keywords"  name="keywords" >
-                   <mat-hint align="end">{{keywordsInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter thesis keywords</mat-label>
+                   <input formControlName="doc_keywords" matInput placeholder="thesis keywords">
+                   
                   </mat-form-field>
        
                </div>
        
                <div class="col-md-6"> 
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter illustration </mat-label>
-                   <input formControlName="doc_illustration" matInput placeholder="doc_illustration">
-                   <!-- <input matInput #illustrationInput maxlength="10" required  [(ngModel)]="book.doc_illustration"  name="illustration" >
-                   <mat-hint align="end">{{illustrationInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter thesis illustration </mat-label>
+                   <input formControlName="doc_illustration" matInput placeholder="thesis illustration">
+                  
                   </mat-form-field>
        
                </div>
                <div class="col-md-6"> 
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter number of pages</mat-label>
-                   <input formControlName="doc_nbr_pages" matInput placeholder="doc_nbr_pages">
-                   <!-- <input matInput #nbr_pagesInput maxlength="10" required  [(ngModel)]="book.doc_nbr_pages"  name="nbr_pages" >
-                   <mat-hint align="end">{{nbr_pagesInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter thesis's number of pages</mat-label>
+                   <input formControlName="doc_nbr_pages" matInput placeholder="thesis's number of pages">
+                   
                   </mat-form-field>
        
                </div>
                
                <div class="col-md-6"> 
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter material </mat-label>
-                   <input formControlName="doc_material" matInput placeholder="doc_material">
-                   <!-- <input matInput #materialInput maxlength="10" required  [(ngModel)]="book.doc_material"  name="material" >
-                   <mat-hint align="end">{{materialInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter thesis material </mat-label>
+                   <input formControlName="doc_material" matInput placeholder="thesis material">
+                   
                   </mat-form-field>
        
                </div>
                <div class="col-md-6"> 
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter length </mat-label>
-                   <input formControlName="doc_length" matInput placeholder="doc_length">
-                   <!-- <input matInput #lengthInput maxlength="10" required  [(ngModel)]="book.doc_length"  name="length" >
-                   <mat-hint align="end">{{lengthInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter thesis length </mat-label>
+                   <input formControlName="doc_length" matInput placeholder="thesis length">
+                   
                   </mat-form-field>
        
                </div>
                <div class="col-md-6"> 
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter abstract </mat-label>
-                   <input formControlName="doc_abstract" matInput placeholder="doc_abstract">
-                   <!-- <input matInput #lengthInput maxlength="10" required  [(ngModel)]="book.doc_length"  name="length" >
-                   <mat-hint align="end">{{lengthInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter thesis abstract </mat-label>
+                   <textarea formControlName="doc_abstract" matInput placeholder="thesis abstract"></textarea>
+                   
                   </mat-form-field>
        
                </div>
                
                <div class="col-md-6">
-                 <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-                   <mat-label>Enter notes </mat-label>
-                   <input formControlName="doc_notes" matInput placeholder="doc_notes">
-                   <!-- <input matInput #notesInput maxlength="10" required  [(ngModel)]="book.doc_notes"  name="notes" >
-                   <mat-hint align="end">{{notesInput.value.length}}/10</mat-hint> -->
+                 <mat-form-field appearance="fill">
+                   <mat-label>Enter thesis notes </mat-label>
+                   <input formControlName="doc_notes" matInput placeholder="thesis notes">
+                   
                   </mat-form-field>
        
                </div>
-                
-                <div>
 
-                  <h4>Basic mat-select</h4>
-                  <mat-form-field appearance="fill">
-                   <mat-label>Favorite food</mat-label>
-                     <mat-select>
-                       <mat-option *ngFor="let food of foods" [value]="food.value">
-                        {{food.viewValue}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
+               <div class="col-md-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter thesis speciality </mat-label>
+                  <input type="text" matInput [matAutocomplete]="specialityAuto" placeholder="thesis speciality" formControlName="sp_id">
+                  <a mat-icon-button matSuffix data-bs-toggle="modal" data-bs-target="#addSpeciality">
+                    <mat-icon>add</mat-icon>
+                  </a> 
+                  <mat-autocomplete #specialityAuto="matAutocomplete">
+                    <mat-option *ngFor="let doc of filterSpeciality" [value]="doc.sp_id">
+                      {{ doc.sp_id }} | {{ doc.sp_label }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+
+               <div class="col-md-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter thesis language</mat-label>
+                  <input type="text" matInput [matAutocomplete]="langAuto" placeholder="thesis language" formControlName="lang_id">
+                  <mat-autocomplete #langAuto="matAutocomplete">
+                    <mat-option *ngFor="let lang of filterLanguages" [value]="lang.lang_id">
+                      {{ lang.lang_id }} | {{ lang.lang_label }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+        
+              <div class="col-md-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter thesis country</mat-label>
+                  <input type="text" matInput [matAutocomplete]="countryAuto" placeholder="thesis country" formControlName="cntr_id">
+                  <mat-autocomplete #countryAuto="matAutocomplete">
+                    <mat-option *ngFor="let country of filterCountries" [value]="country.cntr_id">
+                      {{ country.cntr_id }} | {{ country.cntr_name }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+        
+              <div class="col-md-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter thesis format </mat-label>
+                  <input type="text" matInput [matAutocomplete]="docFormatAuto" placeholder="thesis format" formControlName="docFrm_id">
+                  <mat-autocomplete #docFormatAuto="matAutocomplete">
+                    <mat-option *ngFor="let doc of filterFormat" [value]="doc.docFrm_id">
+                      {{ doc.docFrm_id }} | {{ doc.docFrm_label }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+        
+              <div class="col-md-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter thesis category </mat-label>
+                  <input type="text" matInput [matAutocomplete]="docCatAuto" placeholder="thesis category" formControlName="docCat_id">
+                  <a mat-icon-button matSuffix data-bs-toggle="modal" data-bs-target="#addCategory">
+                    <mat-icon>add</mat-icon>
+                  </a> 
+                  <mat-autocomplete #docCatAuto="matAutocomplete">
+                    <mat-option *ngFor="let doc of filterCategory" [value]="doc.docCat_id">
+                      {{ doc.docCat_id }} | {{ doc.docCat_label }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+              
+              <div class="col-md-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter thesis Status </mat-label>
+                  <input type="text" matInput [matAutocomplete]="docStatAuto" placeholder="thesis status" formControlName="docStat_id">
+                  <mat-autocomplete #docStatAuto="matAutocomplete">
+                    <mat-option *ngFor="let doc of filterStatus" [value]="doc.docStat_id">
+                      {{ doc.docStat_id }} | {{ doc.docStat_label }}
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div> 
+           
+              <div style="display: flex; align-items: center; gap: 2px; margin-top: 20px;">
+                <button (click)="submit('thesisRegistrationForm')" mat-raised-button [style.color]="'#fff'" [style.background-color]="'#6a17a6'" style="margin-right: 10px;">Add book</button>
+                
+                <button (click)="clearForm()" mat-raised-button [style.color]="'#fff'" [style.background-color]="'#6a17a6'" style="margin-right: 25px;">Clear</button>
+                <label class="file-upload-button" >
+                  <input type="file" accept=".txt" (change)="onFileSelected($event)">
+                  <span class="button-text">Import from a file</span>
+                </label>
+              </div>
+              
+                
                 
              </div>
-             
-         
-         
          
               <!-- <button mat-raised-button class="mat-primary" type="submit" (click)="saveBook(addBookForm)" [disabled]="!addBookForm.valid">Save</button> 
-              -->
+              
               <button *ngIf="isUpdateActive" (click)="update()" mat-raised-button color="accent"> Update </button> 
               <button *ngIf="!isUpdateActive" (click)="submit()" mat-raised-button color="accent"> Submit </button>
+              -->
               
-              <button mat-raised-button  (click)="clearForm()"> Clear </button>
               
              </form>
            </div>
            
          
-         <!-- 
-           <mat-form-field hintLabel="Max 10 characters" appearance="fill">
-             <mat-label>select a Category</mat-label>
-             <mat-select>
-              <mat-option *ngFor="let category of categories" [value]="category.label">
-                {{category.label}}
-              </mat-option>
-             </mat-select>
-            </mat-form-field> 
-       
-           <mat-form-field  appearance="fill">
-             <mat-label>Enter Release Date</mat-label>
-              <input matInput #ReleaseDateInput  required [(ngModel)]="book.releaseDate" name="releaseDate" [matDatepicker]="picker">
-               <mat-hint>MM/DD/YYYY</mat-hint>
-               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-             <mat-datepicker #picker></mat-datepicker>
-           </mat-form-field>
-           
-           -->
+         <!-- Category Modal -->
+  <div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="collectionModalLabel">Add Category </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+              <form [formGroup]="categoryRegistrationForm"  >
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter New Category </mat-label>
+                      <input formControlName="docCat_label" matInput placeholder="category">
+                      
+                    </mat-form-field>
+          
+                  </div>
+                  
+                </div>
+                 
+                 
+                </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  class="btn btn-warning"  data-bs-dismiss="modal">Close</button>
+          
+          <button  type="button" (click)="submit('categoryRegistrationForm')" class="btn btn-primary"> Add </button> <!--  (click)="update()" -->
+          <!--<button *ngIf="!isUpdateActive" (click)="submit()" type="button" class="btn btn-primary"> Submit </button>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
+        <!-- Speciality Modal -->
+  <div class="modal fade" id="addSpeciality" tabindex="-1" aria-labelledby="specialityModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="collectionModalLabel">Add Speciality </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+              <form [formGroup]="specialityRegistrationForm"  >
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <mat-form-field appearance="fill">
+                      <mat-label>Enter New Speciality </mat-label>
+                      <input formControlName="sp_label" matInput placeholder="speciality">
+                      
+                    </mat-form-field>
+          
+                  </div>
+                  
+                </div>
+                 
+                 
+                </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  class="btn btn-warning"  data-bs-dismiss="modal">Close</button>
+          
+          <button  type="button" (click)="submit('specialityRegistrationForm')" class="btn btn-primary"> Add </button> <!--  (click)="update()" -->
+          <!--<button *ngIf="!isUpdateActive" (click)="submit()" type="button" class="btn btn-primary"> Submit </button>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
         
            
            

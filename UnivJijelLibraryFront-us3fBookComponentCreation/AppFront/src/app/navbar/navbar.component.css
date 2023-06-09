@@ -18,6 +18,10 @@
 .md-form {
     width: 400px;
 }
-
+.language-picker {
+    background-color: #210635;; /* Background color */
+    color: aliceblue; /* Foreground color */
+    /* Add more styles as needed */
+}
 
 

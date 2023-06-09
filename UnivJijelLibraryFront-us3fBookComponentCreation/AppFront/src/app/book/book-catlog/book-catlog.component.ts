@@ -30,6 +30,7 @@ export class BookCatlogComponent implements OnInit {
   booksList: Book[] = [];
   dataSource: MatTableDataSource<Book> = new MatTableDataSource<Book>(this.booksList);
   column:string;
+  selectedBook: Book | null = null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -108,7 +109,10 @@ export class BookCatlogComponent implements OnInit {
   }
   
  
-  
+  showBookDetails(book: Book) {
+  this.selectedBook = book;
+} 
+
   
   applyFilter(event: Event, column: string){
     this.column=column;

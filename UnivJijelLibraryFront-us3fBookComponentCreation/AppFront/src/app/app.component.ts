@@ -2,28 +2,38 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observer } from 'rxjs';
-import { ITab } from './models/ITab.model';
-import { TabService } from './services/tab.service';
-
+import { ITab } from 'src/app/models/ITab.model';
+import { TabService } from 'src/app/services/tab.service';
+import { UserService } from './services/user.service';
+import { LoginComponent } from './user/login/login.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
+  
   title = 'AppFront';
   tabs:ITab[];
    activeTabUrl;
-
-  constructor(public tabService:TabService, private router:Router){
-    console.log("constructeur app");
-
-
-  }
-
-
   
-  ngOnInit() {
+  
+  
+  constructor(public tabService:TabService, private router:Router,private userService:UserService,private loginComponent: LoginComponent){
+    console.log("constructeur app")
+  }
+  
+  isLoggedIn: boolean = false;
+  handleLogin(loggedIn: boolean) {
+    this.isLoggedIn = loggedIn;}
+
+    
+    
+
+  ngOnInit(): void {
+    
+    
+
     const savedTabs = sessionStorage.getItem('tabs');
     this.tabs=savedTabs?JSON.parse(savedTabs): this.tabService.tabs;
     this.tabService.tabs=    this.tabs     ;
@@ -50,10 +60,8 @@ export class AppComponent implements OnInit{
   
 
   }
-  
 
   
-
   closeTab(index: number, event: Event) {
     if(this.tabs.length===1){
       //this.router.navigateByUrl(this.tabs[index+1].url);
@@ -78,9 +86,6 @@ export class AppComponent implements OnInit{
     sessionStorage.setItem('tabs',JSON.stringify(this.tabs));
 
   }
-
- 
-
   onTabChange(url) {
     //look after the opened  tab with this url in order to recuperate the necessary information for navigation
     //information such as id and the value of inputs, etc.
@@ -94,9 +99,4 @@ export class AppComponent implements OnInit{
     
    
   }
-
-
-  
-
-
 }

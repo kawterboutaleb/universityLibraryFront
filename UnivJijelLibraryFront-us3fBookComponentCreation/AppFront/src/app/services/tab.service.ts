@@ -20,7 +20,11 @@ export class TabService{
     {name:'Book Update', url:'/book/edit/', id: null},
     {name:'Thesis Update', url:'/thesis/edit/', id: null},
     {name:'doc Update', url:'/document/edit/', id: null},
-    {name:'Dashboard', url:'/dashboard', id: null}
+    {name:'Dashboard', url:'/dashboard', id: null},
+    {name:'student', url:'/student', id: null},
+    {name:'loansList', url:'/loans/loansList', id: null},
+    {name:'punishersList', url:'/loans/punishersList', id: null},
+    {name:'User SignUp', url:'/user/signUp', id: null},
     
   ];
   constructor() { }

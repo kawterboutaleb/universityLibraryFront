@@ -16,6 +16,12 @@ export class Thesis {
     doc_length!: number;
     doc_abstract!: string;
     doc_notes!: string;
+    lang_id!: number;
+    cntr_id!: number;
+    docFrm_id!: number;
+    docCat_id!: number;
+    docStat_id!: number;
+    sp_id!: number;
 
 
 }

@@ -1,0 +1,18 @@
+{
+    "home": "home",
+    "acquisition": "acquisition",
+    "dashboard": "dashboard",
+    "showStatistics": "show Statistics",
+    "generateReports": "generate Reports",
+    "manageDocument": "manage Document",
+    "book": "book",
+    "thesis": "thesis",
+    "manageLoans": "manage Loans",
+    "loans": "loans",
+    "punishers": "punishers",
+    "manageLector": "manage Lector",
+    "lictorList": "lictor List",
+    "addNewLector": "add New Lector",
+    "administration": "administration",
+    "help": "help"
+  }

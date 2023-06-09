@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import Scrollbar from "smooth-scrollbar";
 import { TabService } from '../services/tab.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +11,7 @@ import { TabService } from '../services/tab.service';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private tabService:TabService, private router:Router) { }
+  constructor(private tabService:TabService, private router:Router, private translateService: TranslateService) { }
 
   ngOnInit(): void {
     Scrollbar.init(document.querySelector("#sidebarContainer"));

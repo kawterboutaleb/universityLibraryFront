@@ -1,0 +1,68 @@
+<!-- 
+<button mat-raised-button [style.color]="'#fff'"  [style.background-color]="'#6a17a6'"  data-bs-toggle="modal" data-bs-target="#loginModel"> login</button>
+<div class="vh-100  ps-0 pe-0  container-fluid" >
+
+   
+  <div class="modal fade" id="loginModel" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="collectionModalLabel">Sign in </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form [formGroup]="registrationForm">
+            <h2>Login</h2>
+          
+              <div class="col-md-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter Email</mat-label>
+                  <input formControlName="email" matInput placeholder="Email">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field appearance="fill">
+                  <mat-label>Enter Password</mat-label>
+                   <input matInput type="password" name="password" required formControlName="password" matInput placeholder="Password">
+                </mat-form-field>
+              </div>
+              
+            </form>
+        </div>
+        <div class="modal-footer">
+          <div style="display: flex; gap: 10px;">
+            <button *ngIf="!isUpdateActive" (click)="submit()" mat-raised-button [style.color]="'#fff'" 
+            [style.background-color]="'#6a17a6'">Submit</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>  
+</div> -->
+    
+    <div class="registration-form m-3 p-4">
+      <form [formGroup]="registrationForm">
+        <h2>Login</h2>
+      
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Enter Email</mat-label>
+              <input formControlName="email" matInput placeholder="Email">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Enter Password</mat-label>
+               <input matInput type="password" name="password" required formControlName="password" matInput placeholder="Password">
+            </mat-form-field>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button *ngIf="!isUpdateActive" (click)="submit()" mat-raised-button [style.color]="'#fff'" 
+            [style.background-color]="'#6a17a6'">Submit</button>
+          </div>
+        </form>
+      </div> 
+    
+    

@@ -1,0 +1,18 @@
+{
+    "home": "الرئيسية",
+    "acquisition": "الاستحواذ",
+    "dashboard": "لوحة التحكم",
+    "showStatistics": "عرض الإحصائيات",
+    "generateReports": "إنشاء التقارير",
+    "manageDocument": "إدارة المستندات",
+    "book": "كتاب",
+    "thesis": "رسالة جامعية",
+    "manageLoans": "إدارة الإعارات",
+    "loans": "الإعارات",
+    "punishers": "العقوبات",
+    "manageLector": "إدارة المحاضر",
+    "lictorList": "قائمة المحاضر",
+    "addNewLector": "إضافة محاضر جديد",
+    "administration": "الإدارة",
+    "help": "مساعدة؟"
+  }

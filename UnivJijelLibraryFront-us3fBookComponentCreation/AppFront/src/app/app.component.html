@@ -1,59 +1,53 @@
-    <div class="vh-100  ps-0 pe-0  container-fluid" >
-    <app-navbar></app-navbar>
-    <div id="content-container" class="row flex-nowrap vw-100  pe-0 m-0"  >
+<!--<app-login></app-login>-->
+<div class="vh-100  ps-0 pe-0  container-fluid" >
 
-    <div   id="sidebar_parentContainer " class="  collapse multi-collapse col-auto col-md-3 col-xl-2 px-sm-0 px-0 px-xl-0    py-0 mb-0 pb-0" style=" position: relative; background-color: blue;">
-                <app-sidebar ></app-sidebar>
-     </div>
-        
-    
-       <div id="main_container " class=" col pt-5 pe-0 m-0" style=" position: relative; overflow-y:scroll; overflow-y:auto;" >
-          
- 
-      <!--   <ul ngbNav #nav="ngbNav" [(activeId)]="activeTabUrl" (navChange)="onTabChange($event)" class="nav-tabs">
-                <li  *ngFor="let tab of tabs ; let index = index" [id]="tab.url" [ngbNavItem]="tab.url">
-                        <a ngbNavLink class="nav-link">
-                                Tab {{ tab.name }}
-                               <span class="btn-close ms-3" (click)="closeTab(index, $event)"></span>
-                        </a>
-                        <ng-template ngbNavContent>
-                                <router-outlet></router-outlet>
-                        </ng-template>
-                </li>
-  
-        </ul>
-        <div [ngbNavOutlet]="nav" class="mt-2"></div>
-       -->  
-        
 
-                   
-        <nav mat-tab-nav-bar  [tabPanel]="tabPanel"  >
-        <a mat-tab-link *ngFor="let tab of tabs; let index = index"
-           [active]="tab.url==tabService.activeTabUrl"
-           (click)="onTabChange(tab.url)"
-           routerLink="tab.url">
-           Tab {{ tab.name }}
-           <span class="btn-close ms-3" (click)="closeTab(index, $event)"></span>
-        </a>
-      </nav>
-      <mat-tab-nav-panel #tabPanel><router-outlet></router-outlet></mat-tab-nav-panel>
+
+        <div *ngIf="isLoggedIn">
+        <app-navbar></app-navbar>
       
-    
-        
-    
-
-
-                
-                  
-               
-                 
-               
-
-
-
-
-            
-
+        <div id="content-container" class="row flex-nowrap vw-100  pe-0 m-0"  >
+      
+      
+      
+        <div   id="sidebar_parentContainer " class="  collapse multi-collapse col-auto col-md-3 col-xl-2 px-sm-0 px-0 px-xl-0    py-0 mb-0 pb-0" style=" position: relative; background-color: blue;">
+      
+                    <app-sidebar ></app-sidebar>
+      
+         </div>
+      
+           <div id="main_container " class=" col pt-5 pe-0 m-0" style=" position: relative; overflow-y:scroll; overflow-y:auto;" >
+              
+            <nav mat-tab-nav-bar  [tabPanel]="tabPanel"  >
+      
+            <a mat-tab-link *ngFor="let tab of tabs; let index = index"
+      
+               [active]="tab.url==tabService.activeTabUrl"
+      
+               (click)="onTabChange(tab.url)"
+      
+               routerLink="tab.url">
+      
+               Tab {{ tab.name }}
+      
+               <span class="btn-close ms-3" (click)="closeTab(index, $event)"></span>
+      
+            </a>
+      
+          </nav>
+      
+          <mat-tab-nav-panel #tabPanel><router-outlet></router-outlet></mat-tab-nav-panel>
+      
+         
+      
+       </div>
+      
+      </div>
         </div>
-  </div>
-</div>
+      
+      <!-- Login Interface -->
+      <div *ngIf="!isLoggedIn" >
+        <app-login (loggedIn)="handleLogin($event)"></app-login>
+      
+      </div>
+      </div>

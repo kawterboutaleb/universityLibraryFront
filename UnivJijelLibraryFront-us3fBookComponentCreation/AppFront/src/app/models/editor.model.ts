@@ -1,7 +1,5 @@
 export class Editor{
-    toLowerCase() {
-      throw new Error('Method not implemented.');
-    }
+    
     edt_id!: number;
     edt_name!: string;
     edt_adresse!: string;

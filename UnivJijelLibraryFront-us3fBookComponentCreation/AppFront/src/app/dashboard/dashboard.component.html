@@ -3,27 +3,88 @@
     <h1>Books Statistics</h1>
     
     <div class="row mt-5">
-        <div class="col-4 ">
-            <div id="chart-pie2"></div>
-        </div>
+      <div class="col-6">
+        <div id="chart-pie2" style="width: 80%;"></div>
+      </div>
+      
+      
     </div>
 
+    <div class="row mt-5">
+      <div class="col-6">
+        
+        <h3>Most Frequent Lector Borrowers </h3>
+        <textarea id="result-textarea" rows="10" cols="50" readonly></textarea>
+        
+      </div>
+      <div class="col-6">
+        <div>
+          <div>
+            <input type="radio" id="year2022" name="year" value="2022" >
+            <label for="year2022">2022</label>
+          </div>
+          <div>
+            <input type="radio" id="year2023" name="year" value="2023" checked>
+            <label for="year2023">2023</label>
+          </div>
+        </div>
+        <div id="chart-line" style="width: 80%;"></div>
+        
+      </div>
+      
+      
+    </div>
 
     <div class="row mt-5">
       <div class="col-4 ">
         <div id="chart-gauge"></div>
       </div>
+
       <div class="col-4">
         <div id="chart-pie"></div>
       </div>
     </div>
+
     <div class="row mt-5">
-      <div class="col-4 ">
+      <div class="col-4">
         <div id="chart-column"></div>
       </div>
-      <div class="col-4 ">
-        <div id="chart-line"></div>
+      <div class="col-4 offset-2">
+        <div class="statistics">
+          <div class="result">
+            <h3>Most Frequent Document Title</h3>
+            <textarea id="result" rows="10" cols="50" readonly></textarea>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="row mt-5">
+      <div class="col-4 ">
+        <div class="statistic">
+          <h3>Total Number of Students</h3>
+          <p>{{ totalStudents }}</p>
+        </div>
+        <div class="statistic">
+          <h3>Total Number of Professors</h3>
+          <p>{{ totalProfessors }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+
+      <div class="col-4">
+        <div class="statistic">
+          <h3>Total Number of Librarians</h3>
+          <p>{{ totalLibrarians }}</p>
+        </div>
+        <div class="statistic">
+          <h3>Total Number of Punishers</h3>
+          <p>{{ totalPunishers }}</p>
+        </div>
+      </div>
+    </div>
+
     </div>
     

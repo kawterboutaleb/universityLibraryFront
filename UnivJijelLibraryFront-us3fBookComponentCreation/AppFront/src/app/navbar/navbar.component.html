@@ -10,44 +10,32 @@
                     <img src="/assets/logoUniv.jpg" class="rounded-circle  " style=" width:36px; ">
                 </a>
             
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{subLibrary}}
+                        </a>
                 
-               
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        {{subLibrary}}
-                    </a>
-
-                    <ul class="dp-menu dropdown-menu " aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">FSEI library</a></li>
-                        <li><a class="dropdown-item" href="#">ST library</a></li>
-                        <li><a class="dropdown-item" href="#">-----</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <button class="btn text-white text-decoration-none ms-2" type="button">OPAC</button>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        En
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="languageDropdown">
-                        <li><a class="dropdown-item" href="#">English</a></li>
-                        <li><a class="dropdown-item" href="#">French</a></li>
-                        <li><a class="dropdown-item" href="#">Arabic</a></li>
-                    </ul>
-                </li>
-               
-            </ul>
-            <!-- 
-              Material Design Search Bar 
-            <div class="md-form active-cyan-2 me-5 pb-0 ">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-            </div> -->
-
+                        <ul class="dp-menu dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">FSEI library</a></li>
+                            <li><a class="dropdown-item" href="#">ST library</a></li>
+                            <li><a class="dropdown-item" href="#">-----</a></li>
+                        </ul>
+                    </li>
+                
+                    
+                </ul>
+                <ul class="navbar-nav me-5 pb-0">
+                    <li class="nav-item dropdown">
+                        <select id="languagePicker" class="language-picker" (change)="selectLanguage($event)">
+                            <option value="en-US">En</option>
+                            <option value="fr-FR">Fr</option>
+                            <option value="ar-AR">Ar</option>
+                        </select>
+                    </li>
+                </ul>
             
-           
 
             <div class="dropdown pb-0 me-2">
                 <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
