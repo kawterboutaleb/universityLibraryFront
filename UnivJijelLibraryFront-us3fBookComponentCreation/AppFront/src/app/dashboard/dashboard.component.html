@@ -1,29 +1,40 @@
-
 <div class="container-fluid py-3">
-    <h1>Books Statistics</h1>
-    
-    <div class="row mt-5">
-        <div class="col-4 ">
-            <div id="chart-pie2"></div>
+  <h1>Books Statistics</h1>
+  
+  <div class="row mt-5">
+    <div class="col-6">
+      <div id="chart-pie2" style="width: 80%;"></div>
+    </div>
+    <div class="col-6">
+      <div>
+        <div>
+          <input type="radio" id="year2022" name="year" value="2022" >
+          <label for="year2022">2022</label>
         </div>
+        <div>
+          <input type="radio" id="year2023" name="year" value="2023" checked>
+          <label for="year2023">2023</label>
+        </div>
+      </div>
+      <div id="chart-line" style="width: 80%;"></div>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-4 ">
+      <div id="chart-gauge"></div>
     </div>
 
+    <div class="col-4">
+      <div id="chart-pie"></div>
+    </div>
+  </div>
 
-    <div class="row mt-5">
-      <div class="col-4 ">
-        <div id="chart-gauge"></div>
-      </div>
-      <div class="col-4">
-        <div id="chart-pie"></div>
-      </div>
-    </div>
-    <div class="row mt-5">
-      <div class="col-4 ">
-        <div id="chart-column"></div>
-      </div>
-      <div class="col-4 ">
-        <div id="chart-line"></div>
-      </div>
-    </div>
+  <div class="row mt-5">
+    <div class="col-4 ">
+      <div id="chart-column"></div>
     </div>
     
+  </div> 
+
+  </div>

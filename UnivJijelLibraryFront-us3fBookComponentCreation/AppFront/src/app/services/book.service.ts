@@ -1,25 +1,31 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import {Observable} from 'rxjs';
 
 import { Book } from '../models/book.model';
 import { Editor } from '../models/editor.model';
-
+import { environment } from 'src/environments/environment';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class BookService {
-
-  constructor(private http:HttpClient) {
+ // private token = environment.apiBaseUrl;
+ 
+  
+  constructor(private http:HttpClient,private userService:UserService) {
    }
-
-   public getAllBooks():Observable<Book[]>{
-      return this.http.get<Book[]>('http://localhost:8060/api/book/books');
-   }
-
    
+   public getAllBooks():Observable<Book[]>{
+    
+    
+    return this.http.get<Book[]>('http://localhost:8060/api/book/books' );
+  }
+
 
    public saveBook(book:Book){
       return this.http.post<Book>('http://localhost:8060/api/book/add', book);

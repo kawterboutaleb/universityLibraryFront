@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { BookComponent } from "./book/book.component";
 import { BookCatlogComponent } from "./book/book-catlog/book-catlog.component";
 import { TestComponent } from "./test/test.component";
-import { UserLoginComponent } from "./user-login/user-login.component";
+import { LoginComponent } from "./user/login/login.component";
 import { BookAddComponent } from "./book/book-add/book-add.component";
 import { Book } from "./models/book.model";
 import { AppComponent } from "./app.component";
@@ -18,11 +18,19 @@ import { DocumentComponent } from "./document/document.component";
 import { ThesisCatalogComponent } from "./thesis/thesis-catalog/thesis-catalog.component";
 import { ThesisComponent } from "./thesis/thesis.component";
 import { ThesisAddComponent } from "./thesis/thesis-add/thesis-add.component";
-
+import { UserSignUPComponent } from "./user/user-sign-up/user-sign-up.component";
+import { UserComponent } from "./user/user.component";
+import { MainComponent } from "./main/main.component";
+import { LoansComponent } from "./loans/loans.component";
+import { LoansListComponent } from "./loans/loans-list/loans-list.component";
+import { PunishersListComponent } from "./loans/punishers-list/punishers-list.component";
+import { LectorComponent } from "./lector/lector.component";
 const appRoutes: Routes =[
+    //{ path: '', redirectTo: '/user/login', pathMatch: 'full' },
     { path: '', redirectTo: 'home',pathMatch:"full" },
-    {path:'login', component: UserLoginComponent},
+    {path:'main', component: MainComponent},
     {path:'home', component: HomeComponent},
+    {path:'lector', component: LectorComponent},
     {path:'book', component: BookComponent, 
         children:[
             {path:'catalog', component:BookCatlogComponent},
@@ -41,9 +49,29 @@ const appRoutes: Routes =[
             {path:'add',component:ThesisAddComponent},
             {path:'edit/:id',component:ThesisUpdateComponent}
         ]},
+        {path:'user', component: UserComponent, 
+        children:[
+            {path:'signUp', component:UserSignUPComponent},
+            { path: 'login', component: LoginComponent },
+            
+        ]},
+        {path:'loans', component: LoansComponent,
+
+        children:[
+
+            {path:'loansList', component:LoansListComponent},
+
+            {path:'punishersList', component:PunishersListComponent}
+
+           
+
+        ]},
+        
     {path:'dashboard', component:DashboardComponent},
     {path:'test', component: TestComponent},
-    {path:'**', redirectTo:'/home' }
+    //{ path: '**', redirectTo: '' },
+    {path:'**', redirectTo:'/home' },
+   
 ]
 @NgModule({
     imports:[RouterModule.forRoot(appRoutes)],

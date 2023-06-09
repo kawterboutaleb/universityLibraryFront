@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import {Observable} from 'rxjs';
+import {Observable, map} from 'rxjs';
 
 import { Editor } from '../models/editor.model';
 
@@ -13,11 +13,28 @@ export class EditorService {
 
   constructor(private http:HttpClient) {
    }
-
-   public getAllEditors():Observable<Editor[]>{
+/*
+   public getAllEditors(){
+      return this.http.get('http://localhost:8060/api/editor/editors').pipe(
+         map((response:[]) => response.map(item => item['edt_name']))
+       );
+   } 
+   public getAllEditors() {
+      return this.http.get('http://localhost:8060/api/editor/editors').pipe(
+         map((response:[]) => response.map(item => item['edt_name']))
+       );
+      
+    } 
+   
+   public getAllEditors(): Observable<string[]> {
+      return this.http.get<Editor[]>('http://localhost:8060/api/editor/editors')
+         .pipe(
+            map(editors => editors.map(editor => editor.edt_name))
+         );
+   } */
+   public getAllEditors(): Observable<Editor[]> {
       return this.http.get<Editor[]>('http://localhost:8060/api/editor/editors');
    }
-
    
 
    public saveEditor(editor:Editor){

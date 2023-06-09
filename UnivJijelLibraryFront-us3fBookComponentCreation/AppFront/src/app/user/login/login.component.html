@@ -1,0 +1,32 @@
+<div class="vh-100  ps-0 pe-0  container-fluid" >
+
+<!--<div *ngIf="!isGoLogin">
+  <app-main>(goLogin)="handleGoLogin($event)"</app-main>
+</div> -->
+
+<!--<div *ngIf="isGoLogin">-->
+<div>
+<div class="registration-form m-3 p-4">
+  <form [formGroup]="registrationForm">
+    <h2>Login</h2>
+  
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter Username</mat-label>
+          <input formControlName="username" matInput placeholder="Email">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter Password</mat-label>
+           <input matInput type="password" name="password" required formControlName="password" matInput placeholder="Password">
+        </mat-form-field>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button *ngIf="!isUpdateActive" (click)="submit()" mat-raised-button [style.color]="'#fff'" 
+        [style.background-color]="'#6a17a6'">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>

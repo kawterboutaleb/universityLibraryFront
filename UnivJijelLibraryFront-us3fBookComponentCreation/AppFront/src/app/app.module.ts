@@ -1,17 +1,17 @@
+
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatTabsModule } from '@angular/material/tabs'; 
+import { MatTabsModule } from '@angular/material/tabs';
 import {MatDialogConfig, MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import { AppComponent } from './app.component';
-import { UserLoginComponent } from './user-login/user-login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -36,18 +36,25 @@ import { DocUpdateComponent } from './document/doc-update/doc-update.component';
 import { DocCatalogComponent } from './document/doc-catalog/doc-catalog.component';
 import { ThesisComponent } from './thesis/thesis.component';
 import { ThesisCatalogComponent } from './thesis/thesis-catalog/thesis-catalog.component';
-
 import { MatChipsModule } from '@angular/material/chips';
 import { CommonModule } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
 import { ThesisAddComponent } from './thesis/thesis-add/thesis-add.component';
 import { ThesisUpdateComponent } from './thesis/thesis-update/thesis-update.component';
-
+import { UserComponent } from './user/user.component';
+import { LectorComponent } from './lector/lector.component';
+import { MatListModule } from '@angular/material/list';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { LoansComponent } from './loans/loans.component';
+import { LoansListComponent } from './loans/loans-list/loans-list.component';
+import { PunishersListComponent } from './loans/punishers-list/punishers-list.component';
+import { JwtInterceptor } from 'src/app/jwt.interceptor';
+import { UserSignUPComponent } from './user/user-sign-up/user-sign-up.component';
+import { LoginComponent } from './user/login/login.component';
+import { MainComponent } from './main/main.component';
 @NgModule({
   declarations: [
     AppComponent,
-    UserLoginComponent,
     SidebarComponent,
     NavbarComponent,
     BookComponent,
@@ -67,6 +74,15 @@ import { ThesisUpdateComponent } from './thesis/thesis-update/thesis-update.comp
     ThesisCatalogComponent,
     ThesisAddComponent,
     ThesisUpdateComponent,
+    UserComponent,
+    UserSignUPComponent,
+    LoginComponent,
+    MainComponent,
+    LoansComponent,
+    LoansListComponent,
+    PunishersListComponent,
+    LectorComponent
+    
     
       ],
   imports: [
@@ -92,20 +108,31 @@ import { ThesisUpdateComponent } from './thesis/thesis-update/thesis-update.comp
     CommonModule,
     MatChipsModule,
     MatAutocompleteModule,
-    MatSelectModule
+    MatSelectModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    MatListModule,
+    
 
     ],
   providers: [
 
-   
+    {
+      provide: HTTP_INTERCEPTORS,
+     useClass: JwtInterceptor,
+      multi: true
+    },
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {
       ...new MatDialogConfig(),
        hasBackdrop: true,
        autoFocus: true,
        disableClose: true
     } as MatDialogConfig,
-    }
-    
+   
+    },
+    LoginComponent,
+    AppComponent,
+    MainComponent
+   
   ],
   bootstrap: [AppComponent],
   entryComponents: [DeleteDialogComponent, DetailDialogComponent]

@@ -1,10 +1,15 @@
-
-
 .addUpdateBookContainer mat-form-field {
-display: block;
+	display: block;
+	  }
+	  mat-form-field {
+		width: 80%;
+	  }
+  .dropdown-container {
+	width: 300px; /* Adjust the width as needed */
   }
-  mat-form-field {
-	width: 80%;
+  
+  .ng-multiselect-dropdown {
+	width: 80%; /* Adjust the width as needed */
   }
 
   .example-additional-selection {
@@ -38,180 +43,4 @@ display: block;
 	align-items: center;
 	justify-content: center;
 	height: 100%;
-  }
-  /*
-.div-add-book{
-	margin-bottom: 2em;
-	text-align: left;
-	border: 10px solid white;
-	margin-left: 1em;
-	margin-right: 1em;
-	margin-top: 1em;
-	background-color: white;
-}
-
-span{
-	display: block;
-	margin-bottom: 1.5em;
-}
-
-.span-add-book-title{
-	font-size: 1.5em;
-	font-weight: 1em;
-}
-
-.book-label{
-	margin-right: 10em;
-}
-
-.book-input{
-	width: 20%;
-	height: 2em;
-	margin-right: 1em;
-	margin-bottom: 1em;
-	border-radius: 4px; 
-  	border: 1px solid #ccc; 
-	position: absolute;
-	left: 20em;
-}
-
-.book-select{
-	width: 20.5%;
-	height: 2.5em;
-	margin-right: 1em;
-	border-radius: 4px; 
-  	border: 1px solid #ccc;
-  	position: absolute;
-	left: 20em;
-}
-
-.book-submit-button, .clear-form-button{
-	border-radius: 4px; 
-	background-color: #42A948; 
-  	border: 1px solid #ccc; 
-  	height: 1.7em;
-  	width: 10%;
-  	color: white;
-  	font-size: 20px;
-  	position: relative;
-  	left: 20em;
-}
-
-.book-submit-button:hover, .clear-form-button:hover{
-	cursor: pointer;
-}
-
-.clear-form-button{
-	background-color: #FF7F50; 
-	position: relative;
-	left: 42em;
-}
-
-.ng-valid[required], .ng-valid.required  {
-  border-right: 2px solid #42A948; 
-}
-
-.ng-invalid:not(form)  {
-  border-left: 5px solid #a94442; 
-}
-
-mat-datepicker-toggle{
-	position: absolute;
-	left: 34.2em;
-}
-
-
-.div-search-book{
-	text-align: center;	
-	margin-top: 2em;
-	border: 10px solid white;
-	margin-left: 1em;
-	margin-right: 1em;
-	background-color: white;
-}
-
-.span-no-result{
-	color: red;
-}
-
-.search-label{
-	margin-right: 1em;
-}
-
-.search-input{
-	width: 20%;
-	height: 2em;
-	margin-right: 1em;
-	border-radius: 4px; 
-	border: 1px solid #ccc; 
-}
-
-.search-select{
-	width: 7%;
-	height: 2.5em;
-	margin-right: 1em;
-	border-radius: 4px; 
-  	border: 1px solid #ccc; 
-}
-
-.search-submit-button{
-	margin-right: 1em;
-	border-radius: 4px; 
-	background-color: burlywood;; 
-  	border: 1px solid #ccc; 
-  	color: white;
-  	font-size: 20px;
-  	width: 10%;
-  	height: 1.5em;
-}
-
-fieldset-search-book{
-	padding-bottom: 3em;
-}
-
-.search-submit-button:hover{
-	cursor: pointer;
-}
-
-table{
-	border-collapse: collapse;
-}
-
-th, td{
-	  padding-right: 4em;
-	  border-left: none;
-  	  border-right: none;
-  	  border-top: none;
-}
-
-th{
-	border-bottom: 1px solid black;
-}
-
-td{
-	padding-top: 0.8em;
-	border-bottom: 1px solid gray;
-	width: 11%;
-}
-
-button{
-	border-radius: 10px;
-	border: none;
-	margin-right: 0.5em;
-	font-size: 15px;
-	color: white;
-}
-
-button:hover{
-	cursor: pointer;
-}
-
-.button-update-book{
-	background: darkcyan;
-
-}
-
-.button-delete-book{
-	background: red;
-}
-*/
+  } 

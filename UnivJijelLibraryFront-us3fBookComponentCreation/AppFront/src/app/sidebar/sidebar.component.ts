@@ -10,7 +10,10 @@ import { TabService } from '../services/tab.service';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private tabService:TabService, private router:Router) { }
+  role : string ;
+  constructor(private tabService:TabService, private router:Router) {
+   this.role=sessionStorage.getItem('role');
+   }
 
   ngOnInit(): void {
     Scrollbar.init(document.querySelector("#sidebarContainer"));
